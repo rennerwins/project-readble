@@ -12,8 +12,6 @@ class App extends Component {
 			owner: 'Rennerwin',
 			category: 'react'
     }
-
-    console.log(api)
 	}
 	render() {
 		return (
