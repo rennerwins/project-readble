@@ -19,7 +19,6 @@ Before testing the Readable web app, you need to start up local backend developm
 #npm
 npm run start
 ``` 
-or 
 ```
 #yarn
 yarn start
