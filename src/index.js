@@ -12,6 +12,8 @@ import App from './containers/App'
 import CategoryContainer from './containers/CategoryContainer'
 import PostContainer from './containers/PostContainer'
 
+import Navbar from './components/Navbar'
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const store = createStore(
@@ -22,11 +24,16 @@ const store = createStore(
 ReactDOM.render(
 	<Provider store={store}>
 		<BrowserRouter>
-			<Switch>
-				<Route exact path="/" component={App} />
-        <Route exact path="/:category" component={CategoryContainer} />
-        <Route path="/:category/:post_id" component={PostContainer} />
-			</Switch>
+			<div>
+				<Navbar />
+				<div className="container">
+					<Switch>
+						<Route exact path="/" component={App} />
+						<Route exact path="/:category" component={CategoryContainer} />
+						<Route path="/:category/:post_id" component={PostContainer} />
+					</Switch>
+				</div>
+			</div>
 		</BrowserRouter>
 	</Provider>,
 	document.getElementById('root')
