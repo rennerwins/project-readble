@@ -1,15 +1,33 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchCategory, fetchAllPost, votePost } from '../actions'
+import {
+	fetchCategory,
+	fetchAllPost,
+	votePost,
+	sortByRecent,
+	sortByScore
+} from '../actions'
 import { Link } from 'react-router-dom'
 import PostCard from '../components/PostCard'
+import SortOptions from '../components/SortOptions'
 
 class App extends Component {
 	componentDidMount() {
 		this.props.fetchCategory()
 		this.props.fetchAllPost()
 	}
-	
+
+	handleSortChange = e => {
+		const { value } = e.target
+		if (value === 'new' || value === 'old') {
+			this.props.sortByRecent(value)
+		}
+
+		if (value === 'high' || value === 'low') {
+			this.props.sortByScore(value)
+		}
+	}
+
 	render() {
 		return (
 			<div>
@@ -23,9 +41,9 @@ class App extends Component {
 					</div>
 				</div>
 
-				<div className="row">
+				<div className="row my-3">
 					<div className="col-12">
-						<h3>Sort by : </h3>
+						<SortOptions sort={this.props.sort} handleSortChange={this.handleSortChange} />
 					</div>
 				</div>
 
@@ -41,11 +59,18 @@ class App extends Component {
 	}
 }
 
-const mapStateToProps = ({ category, post }) => {
+const mapStateToProps = ({ category, post, sort }) => {
 	return {
 		category: Object.keys(category).map(num => category[num]),
-		post: Object.keys(post).map(num => post[num])
+		post: Object.keys(post).map(num => post[num]),
+		sort
 	}
 }
 
-export default connect(mapStateToProps, { fetchCategory, fetchAllPost, votePost })(App)
+export default connect(mapStateToProps, {
+	fetchCategory,
+	fetchAllPost,
+	votePost,
+	sortByRecent,
+	sortByScore
+})(App)

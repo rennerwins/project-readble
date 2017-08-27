@@ -4,6 +4,8 @@ export const GET_ALL_CATEGORY = 'GET_ALL_CATEGORY'
 export const GET_ALL_POST = 'GET_ALL_POST'
 export const GET_POSTS_FROM_CATEGORY = 'GET_POSTS_FROM_CATEGORY'
 export const GET_VOTE_POST = 'GET_VOTE_POST'
+export const SORT_BY_RECENT = 'SORT_BY_RECENT'
+export const SORT_BY_SCORE = 'SORT_BY_SCORE'
 
 export const getAllCategory = categories => {
 	return {
@@ -54,3 +56,18 @@ export const getVotePost = (id, score) => {
 		score
 	}
 }
+
+export const sortByRecent = sort => {
+	return {
+		type: SORT_BY_RECENT,
+		sort
+	}
+}
+
+export const sortByScore = sort => {
+	return {
+		type: SORT_BY_SCORE,
+		sort
+	}
+}
+
