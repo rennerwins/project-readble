@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchCategory, fetchAllPost } from '../actions'
+import { fetchCategory, fetchAllPost, votePost } from '../actions'
 import { Link } from 'react-router-dom'
 import PostCard from '../components/PostCard'
 
@@ -9,6 +9,7 @@ class App extends Component {
 		this.props.fetchCategory()
 		this.props.fetchAllPost()
 	}
+	
 	render() {
 		return (
 			<div>
@@ -29,9 +30,9 @@ class App extends Component {
 				</div>
 
 				<div className="row">
-					{this.props.post.map(p =>
+					{this.props.post.map((p, index) =>
 						<div className="col-12 col-md-6 col-lg-4" key={p.id}>
-							<PostCard post={p} />
+							<PostCard post={p} votePost={this.props.votePost} index={index} />
 						</div>
 					)}
 				</div>
@@ -47,4 +48,4 @@ const mapStateToProps = ({ category, post }) => {
 	}
 }
 
-export default connect(mapStateToProps, { fetchCategory, fetchAllPost })(App)
+export default connect(mapStateToProps, { fetchCategory, fetchAllPost, votePost })(App)

@@ -1,7 +1,12 @@
 import React from 'react'
 import moment from 'moment'
+import styled from 'styled-components'
 
-const PostCard = ({ post }) => {
+const Thumbs = styled.span`
+  cursor: pointer
+`
+
+const PostCard = ({ post, votePost, index }) => {
 	return (
 		<div className="card my-2">
 			<div className="card-body">
@@ -23,17 +28,17 @@ const PostCard = ({ post }) => {
 				</small>
 
 				<small className="float-right">
-					<span className="mx-3">
+					<Thumbs className="mx-3" onClick={() => votePost(post.id, 'upVote')}>
 						<i className="fa fa-thumbs-o-up" aria-hidden="true" />
-					</span>
+					</Thumbs>
 					<span>
 						<b>
 							{post.voteScore}
 						</b>
 					</span>
-					<span className="mx-3">
+					<Thumbs className="mx-3" onClick={() => votePost(post.id, 'downVote')}>
 						<i className="fa fa-thumbs-o-down" aria-hidden="true" />
-					</span>
+					</Thumbs>
 				</small>
 			</div>
 		</div>
