@@ -6,7 +6,8 @@ import {
 	GET_VOTE_POST,
 	SORT_BY_RECENT,
 	SORT_BY_SCORE,
-	GET_POST
+	GET_POST,
+	GET_COMMENTS
 } from '../actions'
 import _ from 'lodash'
 
@@ -72,6 +73,14 @@ export const post = (state = {}, action) => {
 		case GET_POST: {
 			return {
 				[action.post.id]: action.post
+			}
+		}
+
+		case GET_COMMENTS: {
+			console.log('state', state)
+			return {
+				...state,
+				comments: _.mapKeys(action.comments, 'id')
 			}
 		}
 

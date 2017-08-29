@@ -7,6 +7,7 @@ export const GET_VOTE_POST = 'GET_VOTE_POST'
 export const SORT_BY_RECENT = 'SORT_BY_RECENT'
 export const SORT_BY_SCORE = 'SORT_BY_SCORE'
 export const GET_POST = 'GET_POST'
+export const GET_COMMENTS = 'GET_COMMENTS'
 
 export const getAllCategory = categories => {
 	return {
@@ -81,4 +82,15 @@ export const getPost = post => {
 
 export const fetchPost = postID => dispatch => {
 	api.getPost(postID).then(({ data }) => dispatch(getPost(data)))
+}
+
+export const getComments = comments => {
+	return {
+		type: GET_COMMENTS,
+		comments
+	}
+}
+
+export const fetchComments = postID => dispatch => {
+	api.getPostComments(postID).then(({ data }) => dispatch(getComments(data)))
 }
