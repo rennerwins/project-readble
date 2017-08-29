@@ -43,14 +43,17 @@ class App extends Component {
 
 				<div className="row my-3">
 					<div className="col-12">
-						<SortOptions sort={this.props.sort} handleSortChange={this.handleSortChange} />
+						<SortOptions
+							sort={this.props.sort}
+							handleSortChange={this.handleSortChange}
+						/>
 					</div>
 				</div>
 
 				<div className="row">
 					{this.props.post.map((p, index) =>
 						<div className="col-12 col-md-6 col-lg-4" key={p.id}>
-							<PostCard post={p} votePost={this.props.votePost} index={index} />
+							<PostCard post={p} votePost={this.props.votePost} />
 						</div>
 					)}
 				</div>

@@ -5,16 +5,19 @@ import {
 	GET_POSTS_FROM_CATEGORY,
 	GET_VOTE_POST,
 	SORT_BY_RECENT,
-	SORT_BY_SCORE
+	SORT_BY_SCORE,
+	GET_POST
 } from '../actions'
 import _ from 'lodash'
 
 export const category = (state = {}, action) => {
 	switch (action.type) {
 		case GET_ALL_CATEGORY:
+			const { categories } = action
+			const category = _.mapKeys(categories, 'name')
 			return {
 				...state,
-				...action.categories
+				...category
 			}
 		default:
 			return state
@@ -24,12 +27,20 @@ export const category = (state = {}, action) => {
 export const post = (state = {}, action) => {
 	switch (action.type) {
 		case GET_ALL_POST: {
-			let posts = _.reverse(_.sortBy(action.posts, 'timestamp'))
-			return _.mapKeys(posts, 'id')
+			const { posts } = action
+			const post = _.reverse(_.sortBy(posts, 'timestamp'))
+			const mapPost = _.mapKeys(post, 'id')
+			return {
+				...mapPost
+			}
 		}
 
 		case GET_POSTS_FROM_CATEGORY: {
-			return _.mapKeys(action.posts, 'id')
+			const { posts } = action
+			const mapPost = _.mapKeys(posts, 'id')
+			return {
+				...mapPost
+			}
 		}
 
 		case GET_VOTE_POST: {
@@ -56,6 +67,12 @@ export const post = (state = {}, action) => {
 				? (sortByScore = _.reverse(_.sortBy(state, 'voteScore')))
 				: (sortByScore = _.sortBy(state, 'voteScore'))
 			return _.mapKeys(sortByScore, 'id')
+		}
+
+		case GET_POST: {
+			return {
+				[action.post.id]: action.post
+			}
 		}
 
 		default:

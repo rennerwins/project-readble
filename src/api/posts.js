@@ -28,7 +28,6 @@ export const createNewPost = async post => {
 // Get the details of a single post
 export const getPost = async id => {
 	const res = await axios.get(`/posts/${id}`)
-	console.log(res)
 	return res
 }
 

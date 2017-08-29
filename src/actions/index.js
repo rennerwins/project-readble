@@ -6,6 +6,7 @@ export const GET_POSTS_FROM_CATEGORY = 'GET_POSTS_FROM_CATEGORY'
 export const GET_VOTE_POST = 'GET_VOTE_POST'
 export const SORT_BY_RECENT = 'SORT_BY_RECENT'
 export const SORT_BY_SCORE = 'SORT_BY_SCORE'
+export const GET_POST = 'GET_POST'
 
 export const getAllCategory = categories => {
 	return {
@@ -71,3 +72,13 @@ export const sortByScore = sort => {
 	}
 }
 
+export const getPost = post => {
+	return {
+		type: GET_POST,
+		post
+	}
+}
+
+export const fetchPost = postID => dispatch => {
+	api.getPost(postID).then(({ data }) => dispatch(getPost(data)))
+}
