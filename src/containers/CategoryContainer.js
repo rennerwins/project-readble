@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchPostsFromCategory } from '../actions'
+import PostCard from '../components/PostCard'
 
 class CategoryContainer extends Component {
 	componentDidMount() {
@@ -13,19 +14,21 @@ class CategoryContainer extends Component {
 
 		return (
 			<div>
-				<h1>
-					{category} container
-				</h1>
+				<div className="row mt-3">
+					<div className="col-12">
+						<h1 className="text-capitalize">{category}</h1>
+					</div>
+				</div>
 
 				<hr />
 
-				<ul>
-					{this.props.post.map(p =>
-						<li key={p.id}>
-							{p.title}
-						</li>
-					)}
-				</ul>
+				<div className="row">
+					{this.props.post.map((p, index) => (
+						<div className="col-12 col-md-6 col-lg-4" key={p.id}>
+							<PostCard post={p} votePost={this.props.votePost} />
+						</div>
+					))}
+				</div>
 			</div>
 		)
 	}
@@ -37,4 +40,6 @@ const mapStateToProps = ({ post }) => {
 	}
 }
 
-export default connect(mapStateToProps, { fetchPostsFromCategory })(CategoryContainer)
+export default connect(mapStateToProps, { fetchPostsFromCategory })(
+	CategoryContainer
+)

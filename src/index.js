@@ -11,6 +11,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import App from './containers/App'
 import CategoryContainer from './containers/CategoryContainer'
 import PostContainer from './containers/PostContainer'
+import CreatePostContainer from './containers/CreatePostContainer'
 
 import Navbar from './components/Navbar'
 
@@ -29,8 +30,9 @@ ReactDOM.render(
 				<div className="container">
 					<Switch>
 						<Route exact path="/" component={App} />
-						<Route exact path="/:category" component={CategoryContainer} />
+						<Route path="/create" component={CreatePostContainer} />
 						<Route path="/:category/:post_id" component={PostContainer} />
+						<Route path="/:category" component={CategoryContainer} />
 					</Switch>
 				</div>
 			</div>
