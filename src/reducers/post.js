@@ -2,7 +2,8 @@ import _ from 'lodash'
 import {
 	GET_ALL_POST,
 	GET_POSTS_FROM_CATEGORY,
-	GET_VOTE_POST
+	GET_VOTE_POST,
+	GET_POST
 } from '../actions/post'
 import { 
   SORT_BY_RECENT,
@@ -17,6 +18,12 @@ const post = (state = {}, action) => {
 			const mapPost = _.mapKeys(post, 'id')
 			return {
 				...mapPost
+			}
+		}
+
+		case GET_POST: {
+			return {
+				[action.post.id]: action.post
 			}
 		}
 

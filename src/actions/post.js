@@ -48,7 +48,6 @@ export const votePost = (id, option) => dispatch => {
 
 export const fetchPost = postID => dispatch => {
 	api.getPost(postID).then(({ data }) => {
-		console.log(data)
 		dispatch(getPost(data))
 	})
 }
