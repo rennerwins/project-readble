@@ -9,7 +9,8 @@ import {
 	GET_POST,
 	GET_COMMENTS,
 	CREATE_NEW_POST,
-	CLEAR_NEW_POST
+	CLEAR_NEW_POST,
+	GET_VOTE_COMMENT
 } from '../actions'
 import _ from 'lodash'
 
@@ -79,10 +80,23 @@ export const post = (state = {}, action) => {
 			}
 		}
 
-		case GET_COMMENTS: {
+		default:
+			return state
+	}
+}
+
+export const comment = (state = {}, action) => {
+	switch (action.type) {
+		case GET_COMMENTS:
+			return _.mapKeys(action.comments, 'id')
+
+		case GET_VOTE_COMMENT: {
 			return {
 				...state,
-				comments: _.mapKeys(action.comments, 'id')
+				[action.id]: {
+					...state[action.id],
+					voteScore: action.score
+				}
 			}
 		}
 
@@ -133,7 +147,8 @@ const reducer = combineReducers({
 	category,
 	post,
 	sort,
-	create
+	create,
+	comment
 })
 
 export default reducer

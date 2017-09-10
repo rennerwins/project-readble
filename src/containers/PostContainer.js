@@ -1,14 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchPost, votePost, fetchComments } from '../actions'
-import styled from 'styled-components'
-import moment from 'moment'
-
-const Time = styled.small`
-	font-style: italic;
-	margin-left: 10px;
-`
-const Thumbs = styled.span`cursor: pointer;`
+import { fetchPost, votePost, fetchComments, voteComment } from '../actions'
+import PostDetails from '../components/PostDetails'
+import PostComment from '../components/PostComment'
 
 class PostContainer extends Component {
 	componentDidMount() {
@@ -18,45 +12,31 @@ class PostContainer extends Component {
 	}
 
 	render() {
-		const { post, votePost } = this.props
+		const { post, votePost, voteComment, comment } = this.props
 
 		return (
 			<div>
 				{post !== undefined && (
 					<div className="row my-3 justify-content-lg-center">
 						<div className="col-12 col-lg-8">
-							<div className="card">
-								<div className="card-body">
-									<h4 className="card-title">{post.title}</h4>
-									<h6 className="card-subtitle mb-2 text-muted">
-										{post.author}{' '}
-										<Time>
-											{moment(post.timestamp).format('L')}{' '}
-											{moment(post.timestamp).format('LT')}
-										</Time>
-									</h6>
-									<p className="card-text mt-4">{post.body}</p>
+							<PostDetails post={post} votePost={votePost} />
+						</div>
 
-									<small className="float-left">
-										<Thumbs
-											className="mr-3"
-											onClick={() => votePost(post.id, 'upVote')}
-										>
-											<i className="fa fa-thumbs-o-up" aria-hidden="true" />
-										</Thumbs>
-										<span>
-											<b>{post.voteScore}</b>
-										</span>
-										<Thumbs
-											className="ml-3"
-											onClick={() => votePost(post.id, 'downVote')}
-										>
-											<i className="fa fa-thumbs-o-down" aria-hidden="true" />
-										</Thumbs>
-									</small>
+						{comment.length > 0 && (
+							<div className="col-12 col-lg-8 mt-3">
+								<div className="card">
+									<div className="card-body pb-0">
+										{comment.map(c => (
+											<PostComment
+												comment={c}
+												key={c.id}
+												voteComment={voteComment}
+											/>
+										))}
+									</div>
 								</div>
 							</div>
-						</div>
+						)}
 					</div>
 				)}
 			</div>
@@ -64,11 +44,17 @@ class PostContainer extends Component {
 	}
 }
 
-const mapStateToProps = ({ post }, ownProps) => {
+const mapStateToProps = ({ post, comment }, ownProps) => {
 	let { post_id } = ownProps.match.params
 	return {
-		post: post[post_id]
+		post: post[post_id],
+		comment: Object.keys(comment).map(c => comment[c])
 	}
 }
 
-export default connect(mapStateToProps, { fetchPost, votePost, fetchComments })(PostContainer)
+export default connect(mapStateToProps, {
+	fetchPost,
+	votePost,
+	fetchComments,
+	voteComment
+})(PostContainer)
