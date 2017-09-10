@@ -66,7 +66,7 @@ class App extends Component {
 const mapStateToProps = ({ category, post, sort }) => {
 	return {
 		category: Object.keys(category).map(num => category[num]),
-		post: Object.keys(post).map(num => post[num]),
+		post: Object.keys(post).map(num => post[num]).filter(p => !p.deleted),
 		sort
 	}
 }

@@ -10,7 +10,7 @@ const Time = styled.small`
 const Thumbs = styled.span`cursor: pointer;`
 
 const PostDetails = props => {
-	const { post, votePost } = props
+	const { post, votePost, deletePost } = props
 	return (
 		<div className="card">
 			<div className="card-body">
@@ -41,10 +41,12 @@ const PostDetails = props => {
 
 				<small className="float-right">
 					<Link to={`/${post.category}/${post.id}/edit`}>
-						<span className="mr-3">Edit</span>
+						<Thumbs className="mr-3">Edit</Thumbs>
 					</Link>
 
-					<i className="fa fa-trash-o" aria-hidden="true" />
+					<Thumbs onClick={() => deletePost(post.id)}>
+						<i className="fa fa-trash-o" aria-hidden="true" />
+					</Thumbs>
 				</small>
 			</div>
 		</div>

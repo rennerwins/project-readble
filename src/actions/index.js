@@ -11,6 +11,7 @@ export const GET_COMMENTS = 'GET_COMMENTS'
 export const CREATE_NEW_POST = 'CREATE_NEW_POST'
 export const CLEAR_NEW_POST = 'CLEAR_NEW_POST'
 export const GET_VOTE_COMMENT = 'GET_VOTE_COMMENT'
+export const DELETE_POST = 'DELETE_POST'
 
 export const getAllCategory = categories => {
 	return {
@@ -126,5 +127,11 @@ export const createNewPost = (section, payload) => {
 export const clearNewPost = () => {
 	return {
 		type: CLEAR_NEW_POST
+	}
+}
+
+export const deletePost = postID => {
+	return {
+		type: DELETE_POST
 	}
 }
