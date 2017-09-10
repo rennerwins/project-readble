@@ -1,26 +1,37 @@
 import api from '../api'
 
+// actions
 export const GET_ALL_POST = 'GET_ALL_POST'
 export const GET_POSTS_FROM_CATEGORY = 'GET_POSTS_FROM_CATEGORY'
 export const GET_VOTE_POST = 'GET_VOTE_POST'
+export const GET_POST = 'GET_POST'
 
-export const getAllPost = posts => {
-	return {
-		type: GET_ALL_POST,
-		posts
-	}
-}
+// action creators
+export const getAllPost = posts => ({
+	type: GET_ALL_POST,
+	posts
+})
 
+export const getPostsFromCategory = (category, posts) => ({
+	type: GET_POSTS_FROM_CATEGORY,
+	category,
+	posts
+})
+
+export const getVotePost = (id, score) => ({
+	type: GET_VOTE_POST,
+	id,
+	score
+})
+
+export const getPost = post => ({
+	type: GET_POST,
+	post
+})
+
+// ajax
 export const fetchAllPost = () => dispatch => {
 	api.getAllPost().then(({ data }) => dispatch(getAllPost(data)))
-}
-
-export const getPostsFromCategory = (category, posts) => {
-	return {
-		type: GET_POSTS_FROM_CATEGORY,
-		category,
-		posts
-	}
 }
 
 export const fetchPostsFromCategory = category => dispatch => {
@@ -35,10 +46,9 @@ export const votePost = (id, option) => dispatch => {
 		.then(({ data }) => dispatch(getVotePost(data.id, data.voteScore)))
 }
 
-export const getVotePost = (id, score) => {
-	return {
-		type: GET_VOTE_POST,
-		id,
-		score
-	}
+export const fetchPost = postID => dispatch => {
+	api.getPost(postID).then(({ data }) => {
+		console.log(data)
+		dispatch(getPost(data))
+	})
 }
