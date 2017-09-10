@@ -26,6 +26,10 @@ class CreatePostContainer extends Component {
 		this.props.clearNewPost()
 	}
 
+	handleClearForm = () => {
+		this.props.clearNewPost()
+	}
+
 	render() {
 		const { create } = this.props
 		return (
@@ -56,9 +60,24 @@ class CreatePostContainer extends Component {
 					value={create.author}
 				/>
 
-				<button className="btn btn-primary" onClick={this.handleCreatePost}>
-					Submit
-				</button>
+				<div className="row">
+					<div className="col-12">
+						<div className="float-left">
+							<button className="btn btn-default" onClick={this.handleClearForm}>
+								Clear
+							</button>
+						</div>
+
+						<div className="float-right">
+							<button
+								className="btn btn-primary"
+								onClick={this.handleCreatePost}
+							>
+								Submit
+							</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		)
 	}

@@ -9,7 +9,7 @@ import {
 } from '../actions'
 import { Link } from 'react-router-dom'
 import PostCard from '../components/PostCard'
-import SortOptions from '../components/SortOptions'
+import SortList from '../components/SortList'
 
 class App extends Component {
 	componentDidMount() {
@@ -43,7 +43,7 @@ class App extends Component {
 
 				<div className="row my-3">
 					<div className="col-12">
-						<SortOptions
+						<SortList
 							sort={this.props.sort}
 							handleSortChange={this.handleSortChange}
 						/>

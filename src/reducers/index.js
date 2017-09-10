@@ -31,7 +31,7 @@ export const post = (state = {}, action) => {
 	switch (action.type) {
 		case GET_ALL_POST: {
 			const { posts } = action
-			const post = _.reverse(_.sortBy(posts, 'timestamp'))
+			const post = _.reverse(_.sortBy(posts, 'voteScore'))
 			const mapPost = _.mapKeys(post, 'id')
 			return {
 				...mapPost
@@ -79,7 +79,6 @@ export const post = (state = {}, action) => {
 		}
 
 		case GET_COMMENTS: {
-			console.log('state', state)
 			return {
 				...state,
 				comments: _.mapKeys(action.comments, 'id')
@@ -91,7 +90,7 @@ export const post = (state = {}, action) => {
 	}
 }
 
-export const sort = (state = 'new', action) => {
+export const sort = (state = 'high', action) => {
 	switch (action.type) {
 		case SORT_BY_RECENT:
 			return action.sort
