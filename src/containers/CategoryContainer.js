@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchPostsFromCategory, sortByRecent, sortByScore, votePost } from '../actions'
-import PostCard from '../components/PostCard'
-import SortList from '../components/SortList'
+import { sortByRecent, sortByScore } from '../actions/sort'
+import { fetchPostsFromCategory, votePost } from '../actions/post'
+import PostCard from '../components/post/PostCard'
+import SortList from '../components/sort/SortList'
 
 class CategoryContainer extends Component {
 	componentDidMount() {

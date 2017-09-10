@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {
-	fetchCategory,
-	fetchAllPost,
-	votePost,
-	sortByRecent,
-	sortByScore
-} from '../actions'
+import { sortByRecent, sortByScore } from '../actions/sort'
+import { fetchAllPost, votePost } from '../actions/post'
+import { fetchCategory } from '../actions/category'
 import { Link } from 'react-router-dom'
-import PostCard from '../components/PostCard'
-import SortList from '../components/SortList'
+import PostCard from '../components/post/PostCard'
+import SortList from '../components/sort/SortList'
 
 class App extends Component {
 	componentDidMount() {
@@ -34,11 +30,11 @@ class App extends Component {
 			<div>
 				<div className="row my-3">
 					<div className="col-12">
-						{this.props.category.map(c =>
+						{this.props.category.map(c => (
 							<Link to={c.path} className="badge badge-light mr-3" key={c.path}>
 								{c.name}
 							</Link>
-						)}
+						))}
 					</div>
 				</div>
 
@@ -52,11 +48,11 @@ class App extends Component {
 				</div>
 
 				<div className="row">
-					{this.props.post.map((p, index) =>
+					{this.props.post.map((p, index) => (
 						<div className="col-12 col-md-6 col-lg-4" key={index}>
 							<PostCard post={p} votePost={this.props.votePost} />
 						</div>
-					)}
+					))}
 				</div>
 			</div>
 		)
@@ -66,7 +62,9 @@ class App extends Component {
 const mapStateToProps = ({ category, post, sort }) => {
 	return {
 		category: Object.keys(category).map(num => category[num]),
-		post: Object.keys(post).map(num => post[num]).filter(p => !p.deleted),
+		post: Object.keys(post)
+			.map(num => post[num])
+			.filter(p => !p.deleted),
 		sort
 	}
 }
