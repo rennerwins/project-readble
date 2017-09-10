@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import InputText from '../components/InputText'
-import TextArea from '../components/TextArea'
+import InputText from '../input/InputText'
+import TextArea from '../input/TextArea'
 import { connect } from 'react-redux'
-import { createNewComment, clearNewPost } from '../actions/create'
-import { fetchComments } from '../actions/comment'
+import { createNewComment, clearNewPost } from '../../actions/create'
+import { fetchComments } from '../../actions/comment'
 import uniqid from 'uniqid'
-import api from '../api'
+import api from '../../api'
 
 class CreateComment extends Component {
 	handleComment = e => {
