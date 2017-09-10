@@ -1,6 +1,5 @@
 import api from '../api'
 
-export const GET_ALL_CATEGORY = 'GET_ALL_CATEGORY'
 export const GET_ALL_POST = 'GET_ALL_POST'
 export const GET_POSTS_FROM_CATEGORY = 'GET_POSTS_FROM_CATEGORY'
 export const GET_VOTE_POST = 'GET_VOTE_POST'
@@ -13,17 +12,6 @@ export const CLEAR_NEW_POST = 'CLEAR_NEW_POST'
 export const GET_VOTE_COMMENT = 'GET_VOTE_COMMENT'
 export const DELETE_POST = 'DELETE_POST'
 export const CREATE_NEW_COMMENT = 'CREATE_NEW_COMMENT'
-
-export const getAllCategory = categories => {
-	return {
-		type: GET_ALL_CATEGORY,
-		categories
-	}
-}
-
-export const fetchCategory = () => dispatch => {
-	api.getAllCategory().then(categories => dispatch(getAllCategory(categories)))
-}
 
 export const getAllPost = posts => {
 	return {

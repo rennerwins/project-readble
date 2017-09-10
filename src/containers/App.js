@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
-	fetchCategory,
 	fetchAllPost,
 	votePost,
 	sortByRecent,
 	sortByScore
 } from '../actions'
+import { fetchCategory } from '../actions/category'
 import { Link } from 'react-router-dom'
 import PostCard from '../components/PostCard'
 import SortList from '../components/SortList'

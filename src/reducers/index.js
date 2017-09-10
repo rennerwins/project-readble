@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
+import category from './category'
 import {
-	GET_ALL_CATEGORY,
 	GET_ALL_POST,
 	GET_POSTS_FROM_CATEGORY,
 	GET_VOTE_POST,
@@ -15,19 +15,7 @@ import {
 } from '../actions'
 import _ from 'lodash'
 
-export const category = (state = {}, action) => {
-	switch (action.type) {
-		case GET_ALL_CATEGORY:
-			const { categories } = action
-			const category = _.mapKeys(categories, 'name')
-			return {
-				...state,
-				...category
-			}
-		default:
-			return state
-	}
-}
+
 
 export const post = (state = {}, action) => {
 	switch (action.type) {
