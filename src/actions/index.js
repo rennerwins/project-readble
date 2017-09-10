@@ -8,6 +8,8 @@ export const SORT_BY_RECENT = 'SORT_BY_RECENT'
 export const SORT_BY_SCORE = 'SORT_BY_SCORE'
 export const GET_POST = 'GET_POST'
 export const GET_COMMENTS = 'GET_COMMENTS'
+export const CREATE_NEW_POST = 'CREATE_NEW_POST'
+export const CLEAR_NEW_POST = 'CLEAR_NEW_POST'
 
 export const getAllCategory = categories => {
 	return {
@@ -93,4 +95,18 @@ export const getComments = comments => {
 
 export const fetchComments = postID => dispatch => {
 	api.getPostComments(postID).then(({ data }) => dispatch(getComments(data)))
+}
+
+export const createNewPost = (section, payload) => {
+	return {
+		type: CREATE_NEW_POST,
+		section,
+		payload
+	}
+}
+
+export const clearNewPost = () => {
+	return {
+		type: CLEAR_NEW_POST
+	}
 }

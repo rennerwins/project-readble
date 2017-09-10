@@ -4,11 +4,6 @@ import { fetchPost, votePost, fetchComments } from '../actions'
 import styled from 'styled-components'
 import moment from 'moment'
 
-const PostTitle = styled.h1`
-	border-bottom: 2px solid #ddd;
-	padding-bottom: 6px;
-`
-
 const Time = styled.small`
 	font-style: italic;
 	margin-left: 10px;

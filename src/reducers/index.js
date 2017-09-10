@@ -7,7 +7,9 @@ import {
 	SORT_BY_RECENT,
 	SORT_BY_SCORE,
 	GET_POST,
-	GET_COMMENTS
+	GET_COMMENTS,
+	CREATE_NEW_POST,
+	CLEAR_NEW_POST
 } from '../actions'
 import _ from 'lodash'
 
@@ -102,10 +104,36 @@ export const sort = (state = 'new', action) => {
 	}
 }
 
+const initialCreateState = {
+	id: '',
+	timestamp: '',
+	title: '',
+	body: '',
+	author: '',
+	category: ''
+}
+
+export const create = (state = initialCreateState, action) => {
+	switch (action.type) {
+		case CREATE_NEW_POST:
+			return {
+				...state,
+				[action.section]: action.payload
+			}
+
+		case CLEAR_NEW_POST:
+			return initialCreateState
+
+		default:
+			return state
+	}
+}
+
 const reducer = combineReducers({
 	category,
 	post,
-	sort
+	sort,
+	create
 })
 
 export default reducer

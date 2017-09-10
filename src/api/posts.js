@@ -11,13 +11,13 @@ export const getAllPost = async () => {
 // Add a new post
 export const createNewPost = async post => {
 	if (post) {
-		const { id, timestamp, title, body, owner, category } = post
+		const { id, timestamp, title, body, author, category } = post
 		const res = await axios.post('/posts', {
 			id,
 			timestamp,
 			title,
 			body,
-			owner,
+			author,
 			category
 		})
 		return res
