@@ -11,12 +11,12 @@ export const getPostComments = async postId => {
 // Add a comment to a post
 export const createNewComment = async comment => {
 	if (comment) {
-		const { id, timestamp, body, owner, parentId } = comment
+		const { id, timestamp, body, author, parentId } = comment
 		const res = await axios.post(`/comments`, {
 			id,
 			timestamp,
 			body,
-			owner,
+			author,
 			parentId
 		})
 		return res

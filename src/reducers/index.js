@@ -10,7 +10,8 @@ import {
 	GET_COMMENTS,
 	CREATE_NEW_POST,
 	CLEAR_NEW_POST,
-	GET_VOTE_COMMENT
+	GET_VOTE_COMMENT,
+	CREATE_NEW_COMMENT
 } from '../actions'
 import _ from 'lodash'
 
@@ -99,6 +100,7 @@ export const comment = (state = {}, action) => {
 				}
 			}
 		}
+		
 
 		default:
 			return state
@@ -143,12 +145,37 @@ export const create = (state = initialCreateState, action) => {
 	}
 }
 
+const initialCreateCommentState = {
+	id: '',
+	timestamp: '',
+	body: '',
+	author: '',
+	parentId: ''
+}
+
+export const createComment = (state = initialCreateCommentState, action) => {
+	switch (action.type) {
+		case CREATE_NEW_COMMENT:
+			return {
+				...state,
+				[action.section]: action.payload
+			}
+
+		case CLEAR_NEW_POST:
+			return initialCreateCommentState
+
+		default:
+			return state
+	}
+}
+
 const reducer = combineReducers({
 	category,
 	post,
 	sort,
 	create,
-	comment
+	comment,
+	createComment
 })
 
 export default reducer

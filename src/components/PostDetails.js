@@ -14,7 +14,7 @@ const PostDetails = props => {
 	return (
 		<div className="card">
 			<div className="card-body">
-				<h4 className="card-title">{post.title}</h4>
+				<h3 className="card-title">{post.title}</h3>
 				<h6 className="card-subtitle mb-2 text-muted">
 					{post.author}{' '}
 					<Time>

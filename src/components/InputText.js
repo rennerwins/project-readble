@@ -9,7 +9,7 @@ const InputText = props => {
 				type="text"
 				className="form-control"
 				onChange={change}
-				value={value}
+				value={value || ''}
 				disabled={disabled}
 			/>
 		</div>

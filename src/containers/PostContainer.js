@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchPost, votePost, fetchComments, voteComment } from '../actions'
 import PostDetails from '../components/PostDetails'
 import PostComment from '../components/PostComment'
+import CreateComment from '../components/CreateComment'
 import api from '../api'
 
 class PostContainer extends Component {
@@ -36,6 +37,8 @@ class PostContainer extends Component {
 							<div className="col-12 col-lg-8 mt-3">
 								<div className="card">
 									<div className="card-body pb-0">
+										<h5>Comments</h5>
+										<hr/>
 										{comment.map(c => (
 											<PostComment
 												comment={c}
@@ -47,6 +50,16 @@ class PostContainer extends Component {
 								</div>
 							</div>
 						)}
+
+						<div className="col-12 col-lg-8 mt-3">
+							<div className="card">
+								<div className="card-body">
+									<h5>Add New Comment</h5>
+									<hr/>
+									<CreateComment parentId={post.id} />
+								</div>
+							</div>
+						</div>
 					</div>
 				)}
 			</div>
