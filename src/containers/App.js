@@ -15,6 +15,7 @@ class App extends Component {
 	componentDidMount() {
 		this.props.fetchCategory()
 		this.props.fetchAllPost()
+		this.props.sortByScore('high')
 	}
 
 	handleSortChange = e => {

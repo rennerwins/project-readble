@@ -40,7 +40,8 @@ export const post = (state = {}, action) => {
 
 		case GET_POSTS_FROM_CATEGORY: {
 			const { posts } = action
-			const mapPost = _.mapKeys(posts, 'id')
+			const post = _.reverse(_.sortBy(posts, 'voteScore'))
+			const mapPost = _.mapKeys(post, 'id')
 			return {
 				...mapPost
 			}
@@ -109,7 +110,7 @@ const initialCreateState = {
 	title: '',
 	body: '',
 	author: '',
-	category: ''
+	category: 'react'
 }
 
 export const create = (state = initialCreateState, action) => {

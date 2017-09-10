@@ -1,12 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchPostsFromCategory } from '../actions'
+import { fetchPostsFromCategory, sortByRecent, sortByScore } from '../actions'
 import PostCard from '../components/PostCard'
+import SortList from '../components/SortList'
 
 class CategoryContainer extends Component {
 	componentDidMount() {
 		const { category } = this.props.match.params
 		this.props.fetchPostsFromCategory(category)
+		this.props.sortByScore('high')
+	}
+
+	handleSortChange = e => {
+		const { value } = e.target
+		if (value === 'new' || value === 'old') {
+			this.props.sortByRecent(value)
+		}
+
+		if (value === 'high' || value === 'low') {
+			this.props.sortByScore(value)
+		}
 	}
 
 	render() {
@@ -20,7 +33,14 @@ class CategoryContainer extends Component {
 					</div>
 				</div>
 
-				<hr />
+				<div className="row my-3">
+					<div className="col-12">
+						<SortList
+							sort={this.props.sort}
+							handleSortChange={this.handleSortChange}
+						/>
+					</div>
+				</div>
 
 				<div className="row">
 					{this.props.post.map((p, index) => (
@@ -34,12 +54,15 @@ class CategoryContainer extends Component {
 	}
 }
 
-const mapStateToProps = ({ post }) => {
+const mapStateToProps = ({ post, sort }) => {
 	return {
-		post: Object.keys(post).map(num => post[num])
+		post: Object.keys(post).map(num => post[num]),
+		sort
 	}
 }
 
-export default connect(mapStateToProps, { fetchPostsFromCategory })(
-	CategoryContainer
-)
+export default connect(mapStateToProps, {
+	fetchPostsFromCategory,
+	sortByRecent,
+	sortByScore
+})(CategoryContainer)
