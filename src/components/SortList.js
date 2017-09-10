@@ -5,7 +5,7 @@ const SortOptions = props => {
 	const { sort, handleSortChange } = props
 	return (
 		<div className="form-inline">
-			<h5 className="mr-3">Sort by : </h5>
+			<p className="mr-3 mb-0"><strong>Sort by : </strong></p>
 
       <SortOption
 				handleSortChange={handleSortChange}

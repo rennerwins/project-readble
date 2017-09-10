@@ -89,7 +89,9 @@ export const post = (state = {}, action) => {
 export const comment = (state = {}, action) => {
 	switch (action.type) {
 		case GET_COMMENTS:
-			return _.mapKeys(action.comments, 'id')
+			const { comments } = action
+			const comment = _.reverse(_.sortBy(comments, 'voteScore'))
+			return _.mapKeys(comment, 'id')
 
 		case GET_VOTE_COMMENT: {
 			return {
@@ -100,7 +102,22 @@ export const comment = (state = {}, action) => {
 				}
 			}
 		}
-		
+
+		case SORT_BY_RECENT: {
+			let sortByRecentPost
+			action.sort === 'new'
+				? (sortByRecentPost = _.reverse(_.sortBy(state, 'timestamp')))
+				: (sortByRecentPost = _.sortBy(state, 'timestamp'))
+			return _.mapKeys(sortByRecentPost, 'id')
+		}
+
+		case SORT_BY_SCORE: {
+			let sortByScore
+			action.sort === 'high'
+				? (sortByScore = _.reverse(_.sortBy(state, 'voteScore')))
+				: (sortByScore = _.sortBy(state, 'voteScore'))
+			return _.mapKeys(sortByScore, 'id')
+		}
 
 		default:
 			return state

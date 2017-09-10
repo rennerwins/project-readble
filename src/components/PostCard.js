@@ -14,7 +14,11 @@ const PostCard = ({ post, votePost, index }) => {
 				</Link>
 
 				<h6 className="card-subtitle mb-2 text-muted">{post.author}</h6>
-				<p className="card-text">{post.body}</p>
+				<p className="card-text mt-4 mb-0">{post.body}</p>
+
+				<Link to={post.category} className="badge badge-light">
+					{post.category}
+				</Link>
 			</div>
 
 			<div className="card-footer">

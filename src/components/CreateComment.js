@@ -8,7 +8,7 @@ import api from '../api'
 
 class CreateComment extends Component {
 	handleComment = e => {
-		const { title, body, author } = this.props.createComment
+		const { body, author } = this.props.createComment
 		const { parentId } = this.props
 
 		let id = uniqid()
@@ -22,9 +22,10 @@ class CreateComment extends Component {
 			parentId
 		}
 
-		api.createNewComment(comment)
+		api.createNewComment(comment).then(() => {
+			this.props.fetchComments(parentId)
+		})
 		this.handleClearForm()
-		this.props.fetchComments(parentId)
 	}
 
 	handleClearForm = () => {
