@@ -98,8 +98,8 @@ class CreatePostContainer extends Component {
 	}
 }
 
-const mapStateToProps = state => {
-	return state
+const mapStateToProps = ({ create }) => {
+	return { create }
 }
 
 export default connect(mapStateToProps, { createNewPost, clearNewPost })(

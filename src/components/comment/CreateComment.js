@@ -72,8 +72,8 @@ class CreateComment extends Component {
 	}
 }
 
-const mapStateToProps = state => {
-	return state
+const mapStateToProps = ({ createComment }) => {
+	return { createComment }
 }
 
 export default connect(mapStateToProps, {

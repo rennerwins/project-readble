@@ -11,10 +11,12 @@ class CreatePostContainer extends Component {
 	componentDidMount() {
 		if (this.props.post) {
 			const { title, body, id, category } = this.props.post
-			this.props.createNewPost('title', title)
-			this.props.createNewPost('body', body)
-			this.props.createNewPost('id', id)
-			this.props.createNewPost('category', category)
+			this.props.createNewPost({
+				title,
+				body,
+				id,
+				category
+			})
 		}
 	}
 
@@ -58,13 +60,14 @@ class CreatePostContainer extends Component {
 								<InputText
 									label="Title"
 									change={e =>
-										this.props.createNewPost('title', e.target.value)}
+										this.props.createNewPost({ title: e.target.value })}
 									value={create.title}
 								/>
 
 								<TextArea
 									label="Body"
-									change={e => this.props.createNewPost('body', e.target.value)}
+									change={e =>
+										this.props.createNewPost({ body: e.target.value })}
 									value={create.body}
 								/>
 
