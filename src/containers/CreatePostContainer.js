@@ -30,7 +30,7 @@ class CreatePostContainer extends Component {
 
 	handleClearForm = () => {
 		this.props.clearNewPost()
-		console.log(this.props.history.push('/'))
+		this.props.history.push('/')
 	}
 
 	render() {
@@ -57,12 +57,6 @@ class CreatePostContainer extends Component {
 					change={e => this.props.createNewPost('category', e.target.value)}
 				/>
 
-				{/* <InputText
-					label="Category"
-					change={e => this.props.createNewPost('category', e.target.value)}
-					value={create.category}
-				/> */}
-
 				<InputText
 					label="Author"
 					change={e => this.props.createNewPost('author', e.target.value)}
@@ -76,7 +70,7 @@ class CreatePostContainer extends Component {
 								className="btn btn-default"
 								onClick={this.handleClearForm}
 							>
-								Clear
+								Cancel
 							</button>
 						</div>
 

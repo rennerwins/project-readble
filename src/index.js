@@ -12,6 +12,7 @@ import App from './containers/App'
 import CategoryContainer from './containers/CategoryContainer'
 import PostContainer from './containers/PostContainer'
 import CreatePostContainer from './containers/CreatePostContainer'
+import EditPostContainer from './containers/EditPostContainer'
 
 import Navbar from './components/Navbar'
 
@@ -31,7 +32,12 @@ ReactDOM.render(
 					<Switch>
 						<Route exact path="/" component={App} />
 						<Route path="/create" component={CreatePostContainer} />
+						<Route
+							path="/:category/:post_id/edit"
+							component={EditPostContainer}
+						/>
 						<Route path="/:category/:post_id" component={PostContainer} />
+
 						<Route path="/:category" component={CategoryContainer} />
 					</Switch>
 				</div>

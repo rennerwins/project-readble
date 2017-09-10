@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
+import { Link } from 'react-router-dom'
 
 const Time = styled.small`
 	font-style: italic;
@@ -36,6 +37,14 @@ const PostDetails = props => {
 					>
 						<i className="fa fa-thumbs-o-down" aria-hidden="true" />
 					</Thumbs>
+				</small>
+
+				<small className="float-right">
+					<Link to={`/${post.category}/${post.id}/edit`}>
+						<span className="mr-3">Edit</span>
+					</Link>
+
+					<i className="fa fa-trash-o" aria-hidden="true" />
 				</small>
 			</div>
 		</div>
