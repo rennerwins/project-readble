@@ -37,50 +37,58 @@ class CreatePostContainer extends Component {
 		const { create } = this.props
 		return (
 			<div>
-				<h1>Create New Post</h1>
+				<div className="row my-3 justify-content-lg-center">
+					<div className="col-12 col-lg-8 mt-2">
+						<h1>Create New Post</h1>
+					</div>
+				</div>
 
-				<InputText
-					label="Title"
-					change={e => this.props.createNewPost('title', e.target.value)}
-					value={create.title}
-				/>
+				<div className="row justify-content-lg-center">
+					<div className="col-12 col-lg-8">
+						<InputText
+							label="Title"
+							change={e => this.props.createNewPost('title', e.target.value)}
+							value={create.title}
+						/>
 
-				<TextArea
-					label="Body"
-					change={e => this.props.createNewPost('body', e.target.value)}
-					value={create.body}
-				/>
+						<TextArea
+							label="Body"
+							change={e => this.props.createNewPost('body', e.target.value)}
+							value={create.body}
+						/>
 
-				<SelectOption
-					label="Category"
-					value={create.category}
-					change={e => this.props.createNewPost('category', e.target.value)}
-				/>
+						<SelectOption
+							label="Category"
+							value={create.category}
+							change={e => this.props.createNewPost('category', e.target.value)}
+						/>
 
-				<InputText
-					label="Author"
-					change={e => this.props.createNewPost('author', e.target.value)}
-					value={create.author}
-				/>
+						<InputText
+							label="Author"
+							change={e => this.props.createNewPost('author', e.target.value)}
+							value={create.author}
+						/>
 
-				<div className="row">
-					<div className="col-12">
-						<div className="float-left">
-							<button
-								className="btn btn-default"
-								onClick={this.handleClearForm}
-							>
-								Cancel
-							</button>
-						</div>
+						<div className="row">
+							<div className="col-12">
+								<div className="float-left">
+									<button
+										className="btn btn-default"
+										onClick={this.handleClearForm}
+									>
+										Cancel
+									</button>
+								</div>
 
-						<div className="float-right">
-							<button
-								className="btn btn-primary"
-								onClick={this.handleCreatePost}
-							>
-								Submit
-							</button>
+								<div className="float-right">
+									<button
+										className="btn btn-primary"
+										onClick={this.handleCreatePost}
+									>
+										Submit
+									</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

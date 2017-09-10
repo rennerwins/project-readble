@@ -3,12 +3,18 @@ import { connect } from 'react-redux'
 import { fetchPost, votePost, fetchComments, voteComment } from '../actions'
 import PostDetails from '../components/PostDetails'
 import PostComment from '../components/PostComment'
+import api from '../api'
 
 class PostContainer extends Component {
 	componentDidMount() {
 		let { post_id } = this.props.match.params
 		this.props.fetchPost(post_id)
 		this.props.fetchComments(post_id)
+	}
+
+	handleDeletePost = postID => {
+		api.deletePost(postID)
+		this.props.history.push('/')
 	}
 
 	render() {
@@ -19,7 +25,11 @@ class PostContainer extends Component {
 				{post !== undefined && (
 					<div className="row my-3 justify-content-lg-center">
 						<div className="col-12 col-lg-8">
-							<PostDetails post={post} votePost={votePost} />
+							<PostDetails
+								post={post}
+								votePost={votePost}
+								deletePost={this.handleDeletePost}
+							/>
 						</div>
 
 						{comment.length > 0 && (
