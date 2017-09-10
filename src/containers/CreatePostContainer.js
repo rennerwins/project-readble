@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import InputText from '../components/InputText'
 import TextArea from '../components/TextArea'
+import SelectOption from '../components/SelectOption'
 import { createNewPost, clearNewPost } from '../actions'
 import { connect } from 'react-redux'
 import api from '../api'
@@ -24,10 +25,12 @@ class CreatePostContainer extends Component {
 
 		api.createNewPost(post)
 		this.props.clearNewPost()
+		this.props.history.push(`/${lowerCategory}/${id}`)
 	}
 
 	handleClearForm = () => {
 		this.props.clearNewPost()
+		console.log(this.props.history.push('/'))
 	}
 
 	render() {
@@ -48,11 +51,17 @@ class CreatePostContainer extends Component {
 					value={create.body}
 				/>
 
-				<InputText
+				<SelectOption
+					label="Category"
+					value={create.category}
+					change={e => this.props.createNewPost('category', e.target.value)}
+				/>
+
+				{/* <InputText
 					label="Category"
 					change={e => this.props.createNewPost('category', e.target.value)}
 					value={create.category}
-				/>
+				/> */}
 
 				<InputText
 					label="Author"
@@ -63,7 +72,10 @@ class CreatePostContainer extends Component {
 				<div className="row">
 					<div className="col-12">
 						<div className="float-left">
-							<button className="btn btn-default" onClick={this.handleClearForm}>
+							<button
+								className="btn btn-default"
+								onClick={this.handleClearForm}
+							>
 								Clear
 							</button>
 						</div>

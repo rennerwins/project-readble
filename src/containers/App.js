@@ -52,7 +52,7 @@ class App extends Component {
 
 				<div className="row">
 					{this.props.post.map((p, index) =>
-						<div className="col-12 col-md-6 col-lg-4" key={p.id}>
+						<div className="col-12 col-md-6 col-lg-4" key={index}>
 							<PostCard post={p} votePost={this.props.votePost} />
 						</div>
 					)}
