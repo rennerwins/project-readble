@@ -39,13 +39,13 @@ class CreateComment extends Component {
 			<div>
 				<TextArea
 					label="Body"
-					change={e => this.props.createNewComment('body', e.target.value)}
+					change={e => this.props.createNewComment({ body: e.target.value })}
 					value={createComment.body}
 				/>
 
 				<InputText
 					label="Author"
-					change={e => this.props.createNewComment('author', e.target.value)}
+					change={e => this.props.createNewComment({author: e.target.value})}
 					value={createComment.author}
 				/>
 

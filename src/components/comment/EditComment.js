@@ -8,13 +8,16 @@ import api from '../../api'
 class EditComment extends Component {
 	componentDidMount() {
 		const { comment, createComment } = this.props
-		let body = comment[createComment.id].body
-		this.props.createNewComment('body', body)
+    let body = comment[createComment.id].body
+    this.props.createNewComment({ body })
 	}
 
 	handleClearForm = () => {
-		this.props.createNewComment('id', '')
-		this.props.createNewComment('editing', false)
+    this.props.createNewComment({
+      id: '',
+      editing: false,
+      body: ''
+    })
 	}
 
 	submitEditComment = commentId => {
@@ -27,9 +30,7 @@ class EditComment extends Component {
 			commentId
 		}
 		api.editComment(comment).then(res => {
-			this.props.createNewComment('id', '')
-			this.props.createNewComment('body', '')
-			this.props.createNewComment('editing', false)
+      this.handleClearForm()
 			this.props.fetchComments(postId)
 		})
 	}

@@ -14,7 +14,7 @@ const create = (state = initialCreateState, action) => {
 		case CREATE_NEW_POST:
 			return {
 				...state,
-				[action.section]: action.payload
+				...action.payload
 			}
 
 		case CLEAR_NEW_POST:

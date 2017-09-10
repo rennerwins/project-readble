@@ -47,25 +47,26 @@ class CreatePostContainer extends Component {
 					<div className="col-12 col-lg-8">
 						<InputText
 							label="Title"
-							change={e => this.props.createNewPost('title', e.target.value)}
+							change={e => this.props.createNewPost({ title: e.target.value })}
 							value={create.title}
 						/>
 
 						<TextArea
 							label="Body"
-							change={e => this.props.createNewPost('body', e.target.value)}
+							change={e => this.props.createNewPost({ body: e.target.value })}
 							value={create.body}
 						/>
 
 						<SelectOption
 							label="Category"
 							value={create.category}
-							change={e => this.props.createNewPost('category', e.target.value)}
+							change={e =>
+								this.props.createNewPost({ category: e.target.value })}
 						/>
 
 						<InputText
 							label="Author"
-							change={e => this.props.createNewPost('author', e.target.value)}
+							change={e => this.props.createNewPost({ author: e.target.value })}
 							value={create.author}
 						/>
 

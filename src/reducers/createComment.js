@@ -15,7 +15,7 @@ export const createComment = (state = initialCreateCommentState, action) => {
 		case CREATE_NEW_COMMENT:
 			return {
 				...state,
-				[action.section]: action.payload
+				...action.payload
 			}
 
 		case EDIT_COMMENT:
