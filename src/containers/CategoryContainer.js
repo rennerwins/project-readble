@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { sortByRecent, sortByScore } from '../actions'
+import { sortByRecent, sortByScore } from '../actions/sort'
 import { fetchPostsFromCategory, votePost } from '../actions/post'
 import PostCard from '../components/PostCard'
 import SortList from '../components/SortList'

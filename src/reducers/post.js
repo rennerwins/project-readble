@@ -2,10 +2,12 @@ import _ from 'lodash'
 import {
 	GET_ALL_POST,
 	GET_POSTS_FROM_CATEGORY,
-  GET_VOTE_POST,
-  SORT_BY_RECENT,
-	SORT_BY_SCORE,
+	GET_VOTE_POST
 } from '../actions/post'
+import { 
+  SORT_BY_RECENT,
+	SORT_BY_SCORE
+} from '../actions/sort'
 
 const post = (state = {}, action) => {
 	switch (action.type) {
@@ -35,6 +37,22 @@ const post = (state = {}, action) => {
 					voteScore: action.score
 				}
 			}
+		}
+
+		case SORT_BY_RECENT: {
+			let sortByRecentPost
+			action.sort === 'new'
+				? (sortByRecentPost = _.reverse(_.sortBy(state, 'timestamp')))
+				: (sortByRecentPost = _.sortBy(state, 'timestamp'))
+			return _.mapKeys(sortByRecentPost, 'id')
+		}
+
+		case SORT_BY_SCORE: {
+			let sortByScore
+			action.sort === 'high'
+				? (sortByScore = _.reverse(_.sortBy(state, 'voteScore')))
+				: (sortByScore = _.sortBy(state, 'voteScore'))
+			return _.mapKeys(sortByScore, 'id')
 		}
 
 		default:

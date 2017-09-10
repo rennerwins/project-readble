@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {
-	fetchPost,
-	fetchComments,
-	voteComment,
-	sortByRecent,
-	sortByScore
-} from '../actions'
+import { fetchPost, fetchComments, voteComment } from '../actions'
+import { sortByRecent, sortByScore } from '../actions/sort'
 import { votePost } from '../actions/post'
 import PostDetails from '../components/PostDetails'
 import PostComment from '../components/PostComment'

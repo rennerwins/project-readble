@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { sortByRecent, sortByScore } from '../actions'
+import { sortByRecent, sortByScore } from '../actions/sort'
 import { fetchAllPost, votePost } from '../actions/post'
 import { fetchCategory } from '../actions/category'
 import { Link } from 'react-router-dom'
