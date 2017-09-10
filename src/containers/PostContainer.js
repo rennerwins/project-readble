@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchComments, voteComment } from '../actions/comment'
+import { fetchComments, voteComment, editComment } from '../actions/comment'
 import { sortByRecent, sortByScore } from '../actions/sort'
 import { votePost, fetchPost } from '../actions/post'
 import PostDetails from '../components/post/PostDetails'
 import PostComment from '../components/comment/PostComment'
 import CreateComment from '../components/comment/CreateComment'
 import SortList from '../components/sort/SortList'
+import EditComment from '../components/comment/EditComment'
 import api from '../api'
 
 class PostContainer extends Component {
+	state = {
+		editing: false,
+		cid: ''
+	}
+
 	componentDidMount() {
 		let { post_id } = this.props.match.params
 		this.props.fetchPost(post_id)
@@ -29,6 +35,10 @@ class PostContainer extends Component {
 		})
 	}
 
+	handleEditComment = commentID => {
+		this.props.editComment(commentID, true)
+	}
+
 	handleSortChange = e => {
 		const { value } = e.target
 		if (value === 'new' || value === 'old') {
@@ -41,7 +51,7 @@ class PostContainer extends Component {
 	}
 
 	render() {
-		const { post, votePost, voteComment, comment } = this.props
+		const { post, votePost, voteComment, comment, createComment } = this.props
 
 		return (
 			<div>
@@ -66,12 +76,17 @@ class PostContainer extends Component {
 										/>
 										<br />
 										{comment.map(c => (
-											<PostComment
-												comment={c}
-												key={c.id}
-												voteComment={voteComment}
-												deleteComment={this.handleDeleteComment}
-											/>
+											<div key={c.id}>
+												<PostComment
+													comment={c}
+													voteComment={voteComment}
+													deleteComment={this.handleDeleteComment}
+													edit={this.handleEditComment}
+												/>
+												{
+													createComment.id === c.id && createComment.editing === true && <EditComment postId={c.parentId} />
+												}
+											</div>
 										))}
 									</div>
 								</div>
@@ -94,12 +109,13 @@ class PostContainer extends Component {
 	}
 }
 
-const mapStateToProps = ({ post, comment, sort }, ownProps) => {
+const mapStateToProps = ({ post, comment, sort, createComment }, ownProps) => {
 	let { post_id } = ownProps.match.params
 	return {
 		post: post[post_id],
 		comment: Object.keys(comment).map(c => comment[c]),
-		sort
+		sort,
+		createComment
 	}
 }
 
@@ -109,5 +125,6 @@ export default connect(mapStateToProps, {
 	fetchComments,
 	voteComment,
 	sortByRecent,
-	sortByScore
+	sortByScore,
+	editComment
 })(PostContainer)

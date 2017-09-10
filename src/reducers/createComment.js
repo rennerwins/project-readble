@@ -1,11 +1,13 @@
 import { CLEAR_NEW_POST, CREATE_NEW_COMMENT } from '../actions/create'
+import { EDIT_COMMENT } from '../actions/comment'
 
 const initialCreateCommentState = {
 	id: '',
 	timestamp: '',
 	body: '',
 	author: '',
-	parentId: ''
+	parentId: '',
+	editing: false
 }
 
 export const createComment = (state = initialCreateCommentState, action) => {
@@ -14,6 +16,13 @@ export const createComment = (state = initialCreateCommentState, action) => {
 			return {
 				...state,
 				[action.section]: action.payload
+			}
+
+		case EDIT_COMMENT:
+			return {
+				...state,
+				id: action.id,
+				editing: action.editing
 			}
 
 		case CLEAR_NEW_POST:

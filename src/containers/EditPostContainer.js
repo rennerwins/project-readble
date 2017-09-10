@@ -18,7 +18,7 @@ class CreatePostContainer extends Component {
 		}
 	}
 
-	handleCreatePost = e => {
+	handleCreatePost = () => {
 		const { title, body, category, id } = this.props.create
 		let lowerCategory = category.toLowerCase()
 

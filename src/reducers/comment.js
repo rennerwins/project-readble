@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { GET_COMMENTS, GET_VOTE_COMMENT, } from '../actions/comment'
+import { GET_COMMENTS, GET_VOTE_COMMENT } from '../actions/comment'
 import { SORT_BY_RECENT, SORT_BY_SCORE } from '../actions/sort'
 
 const comment = (state = {}, action) => {

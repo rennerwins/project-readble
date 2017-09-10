@@ -58,5 +58,5 @@ export const editComment = async comment => {
 // Sets a comment's deleted flag to 'true'
 export const deleteComment = async commentId => {
 	const res = await axios.delete(`/comments/${commentId}`)
-	console.log(res)
+	return res
 }

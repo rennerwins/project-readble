@@ -14,7 +14,7 @@ const CommentBody = styled.p`
 `
 
 const PostComment = props => {
-	const { comment, voteComment, deleteComment } = props
+	const { comment, voteComment, deleteComment, edit } = props
 	return (
 		<div className="mb-4">
 			<div className="row">
@@ -56,7 +56,7 @@ const PostComment = props => {
 					</small>
 
 					<small className="float-right">
-						<Thumbs className="mr-3">Edit</Thumbs>
+						<Thumbs className="mr-3" onClick={() => edit(comment.id)}>Edit</Thumbs>
 
 						<Thumbs onClick={() => deleteComment(comment.id)}>
 							<i className="fa fa-trash-o" aria-hidden="true" />
