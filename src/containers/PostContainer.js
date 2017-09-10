@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
 	fetchPost,
-	votePost,
 	fetchComments,
 	voteComment,
 	sortByRecent,
 	sortByScore
 } from '../actions'
+import { votePost } from '../actions/post'
 import PostDetails from '../components/PostDetails'
 import PostComment from '../components/PostComment'
 import CreateComment from '../components/CreateComment'
