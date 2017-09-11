@@ -2,6 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const Thumbs = styled.span`cursor: pointer;`
 
@@ -44,6 +45,12 @@ const PostCard = ({ post, votePost, index }) => {
 			</div>
 		</div>
 	)
+}
+
+PostCard.propTypes = {
+	post: PropTypes.object,
+	votePost: PropTypes.func.isRequired,
+	index: PropTypes.number
 }
 
 export default PostCard

@@ -1,7 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-const SelectOption = props => {
-  const { label, value, change, disabled } = props
+const SelectOption = ({ label, value, change, disabled }) => {
 	return (
 		<div className="form-group">
 			<label>Example select</label>
@@ -12,6 +12,13 @@ const SelectOption = props => {
 			</select>
 		</div>
 	)
+}
+
+SelectOption.propTypes = {
+	label: PropTypes.string.isRequired,
+	change: PropTypes.func.isRequired,
+	value: PropTypes.string,
+	disabled: PropTypes.bool
 }
 
 export default SelectOption

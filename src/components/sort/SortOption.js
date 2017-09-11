@@ -1,8 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-const SortOption = props => {
-	const { sort, handleSortChange, label, value } = props
-
+const SortOption = ({ sort, handleSortChange, label, value }) => {
 	return (
 		<div className="form-check form-check-inline">
 			<label className="form-check-label">
@@ -19,6 +18,13 @@ const SortOption = props => {
 			</label>
 		</div>
 	)
+}
+
+SortOption.propTypes = {
+	sort: PropTypes.string.isRequired,
+	handleSortChange: PropTypes.func.isRequired,
+	label: PropTypes.string.isRequired,
+	value: PropTypes.string.isRequired
 }
 
 export default SortOption

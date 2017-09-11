@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const Time = styled.small`
 	font-style: italic;
@@ -13,8 +14,7 @@ const CommentBody = styled.p`
 	margin-left: 1px;
 `
 
-const PostComment = props => {
-	const { comment, voteComment, deleteComment, edit } = props
+const PostComment = ({ comment, voteComment, deleteComment, edit }) => {
 	return (
 		<div className="mb-4">
 			<div className="row">
@@ -66,6 +66,13 @@ const PostComment = props => {
 			</div>
 		</div>
 	)
+}
+
+PostComment.propTypes = {
+	comment: PropTypes.object,
+	voteComment: PropTypes.func.isRequired,
+	deleteComment: PropTypes.func.isRequired,
+	edit: PropTypes.func.isRequired
 }
 
 export default PostComment

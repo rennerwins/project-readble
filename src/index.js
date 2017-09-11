@@ -4,16 +4,13 @@ import registerServiceWorker from './utils/registerServiceWorker'
 import { Provider } from 'react-redux'
 import { createStore, compose, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-// import logger from 'redux-logger'
 import rootReducer from './reducers'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-
 import App from './containers/App'
 import CategoryContainer from './containers/CategoryContainer'
 import PostContainer from './containers/PostContainer'
 import CreatePostContainer from './containers/CreatePostContainer'
 import EditPostContainer from './containers/EditPostContainer'
-
 import Navbar from './components/Navbar'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

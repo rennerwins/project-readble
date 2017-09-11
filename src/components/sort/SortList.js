@@ -1,8 +1,8 @@
 import React from 'react'
 import SortOption from './SortOption'
+import PropTypes from 'prop-types'
 
-const SortOptions = props => {
-	const { sort, handleSortChange } = props
+const SortList = ({ sort, handleSortChange }) => {
 	return (
 		<div className="form-inline">
 			<p className="mr-3 mb-0"><strong>Sort by : </strong></p>
@@ -35,4 +35,9 @@ const SortOptions = props => {
 	)
 }
 
-export default SortOptions
+SortList.propTypes = {
+	sort: PropTypes.string.isRequired,
+	handleSortChange: PropTypes.func.isRequired
+}
+
+export default SortList

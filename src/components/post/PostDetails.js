@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const Time = styled.small`
 	font-style: italic;
@@ -9,8 +10,7 @@ const Time = styled.small`
 `
 const Thumbs = styled.span`cursor: pointer;`
 
-const PostDetails = props => {
-	const { post, votePost, deletePost } = props
+const PostDetails = ({ post, votePost, deletePost }) => {
 	return (
 		<div className="card">
 			<div className="card-body">
@@ -65,6 +65,12 @@ const PostDetails = props => {
 			</div>
 		</div>
 	)
+}
+
+PostDetails.propTypes = {
+	post: PropTypes.object.isRequired,
+	votePost: PropTypes.func.isRequired,
+	deletePost: PropTypes.func.isRequired
 }
 
 export default PostDetails
