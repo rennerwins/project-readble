@@ -42,7 +42,7 @@ class EditComment extends Component {
 			<div className="row my-3">
 				<div className="col-12">
 					<TextArea
-						change={e => this.props.createNewComment('body', e.target.value)}
+						change={e => this.props.createNewComment({ body: e.target.value })}
 						value={createComment.body}
 					/>
 				</div>
