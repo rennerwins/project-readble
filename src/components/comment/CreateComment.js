@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import InputText from '../input/InputText'
 import TextArea from '../input/TextArea'
 import { connect } from 'react-redux'
-import { createNewComment, clearNewPost } from '../../actions/create'
+import * as createAction from '../../actions/create'
 import { fetchComments } from '../../actions/comment'
 import uniqid from 'uniqid'
 import api from '../../api'
@@ -77,7 +77,6 @@ const mapStateToProps = ({ createComment }) => {
 }
 
 export default connect(mapStateToProps, {
-	createNewComment,
-	clearNewPost,
+	...createAction,
 	fetchComments
 })(CreateComment)

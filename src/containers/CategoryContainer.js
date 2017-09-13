@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { sortByRecent, sortByScore } from '../actions/sort'
-import { fetchPostsFromCategory, votePost } from '../actions/post'
+import * as sortAction from '../actions/sort'
+import * as postAction from '../actions/post'
 import PostCard from '../components/post/PostCard'
 import SortList from '../components/sort/SortList'
 
@@ -63,8 +63,6 @@ const mapStateToProps = ({ post, sort }) => {
 }
 
 export default connect(mapStateToProps, {
-	fetchPostsFromCategory,
-	sortByRecent,
-	sortByScore,
-	votePost
+	...postAction,
+	...sortAction
 })(CategoryContainer)

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchComments, voteComment, editComment } from '../actions/comment'
-import { sortByRecent, sortByScore } from '../actions/sort'
-import { votePost, fetchPost } from '../actions/post'
+import * as commentAction from '../actions/comment'
+import * as sortAction from '../actions/sort'
+import * as postAction from '../actions/post'
 import PostDetails from '../components/post/PostDetails'
 import PostComment from '../components/comment/PostComment'
 import CreateComment from '../components/comment/CreateComment'
@@ -115,11 +115,7 @@ const mapStateToProps = ({ post, comment, sort, createComment }, ownProps) => {
 }
 
 export default connect(mapStateToProps, {
-	fetchPost,
-	votePost,
-	fetchComments,
-	voteComment,
-	sortByRecent,
-	sortByScore,
-	editComment
+	...commentAction,
+	...sortAction,
+	...postAction
 })(PostContainer)

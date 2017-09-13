@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import InputText from '../components/input/InputText'
 import TextArea from '../components/input/TextArea'
 import SelectOption from '../components/input/SelectOption'
-import { createNewPost, clearNewPost } from '../actions/create'
+import * as createAction from '../actions/create'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import api from '../api'
@@ -125,6 +125,6 @@ const mapStateToProps = ({ post, create }, ownProps) => {
 	}
 }
 
-export default connect(mapStateToProps, { createNewPost, clearNewPost })(
+export default connect(mapStateToProps, createAction)(
 	CreatePostContainer
 )
