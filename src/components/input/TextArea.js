@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const TextArea = ({ label, change, value, rows }) => {
+const TextArea = ({ label, change, value, rows, disabled }) => {
 	return (
 		<div className="form-group">
 			{label && <label>{label}</label>}
@@ -12,6 +12,7 @@ const TextArea = ({ label, change, value, rows }) => {
 				onChange={change}
 				value={value}
 				rows={rows || 3}
+				disabled={disabled}
 			/>
 		</div>
 	)

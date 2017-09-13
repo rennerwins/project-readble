@@ -11,7 +11,6 @@ import CategoryContainer from './containers/CategoryContainer'
 import PostContainer from './containers/PostContainer'
 import CreatePostContainer from './containers/CreatePostContainer'
 import EditPostContainer from './containers/EditPostContainer'
-import NotFound from './containers/NotFound'
 import Navbar from './components/Navbar'
 import './index.css'
 
@@ -28,14 +27,13 @@ ReactDOM.render(
 					<Switch>
 						<Route exact path="/" component={App} />
 						<Route exact path="/create" component={CreatePostContainer} />
+						<Route exact path="/:category" component={CategoryContainer} />
+						<Route exact path="/:category/:post_id" component={PostContainer} />
 						<Route
+							exact
 							path="/:category/:post_id/edit"
 							component={EditPostContainer}
 						/>
-						<Route path="/:category/:post_id" component={PostContainer} />
-
-						<Route path="/:category" component={CategoryContainer} />
-						<Route component={NotFound} />
 					</Switch>
 				</div>
 			</div>

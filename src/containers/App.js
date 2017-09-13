@@ -2,14 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as sortAction from '../actions/sort'
 import * as postAction from '../actions/post'
-import { fetchCategory } from '../actions/category'
-import { Link } from 'react-router-dom'
 import PostCard from '../components/post/PostCard'
 import SortList from '../components/sort/SortList'
 
 class App extends Component {
 	componentDidMount() {
-		this.props.fetchCategory()
 		this.props.fetchAllPost()
 		this.props.sortByScore('high')
 	}
@@ -28,16 +25,6 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<div className="row my-3">
-					<div className="col-12">
-						{this.props.category.map(c => (
-							<Link to={c.path} className="badge badge-light mr-3" key={c.path}>
-								{c.name}
-							</Link>
-						))}
-					</div>
-				</div>
-
 				<div className="row my-3">
 					<div className="col-12">
 						<SortList
@@ -70,7 +57,6 @@ const mapStateToProps = ({ category, post, sort }) => {
 }
 
 export default connect(mapStateToProps, {
-	fetchCategory,
 	...postAction,
 	...sortAction
 })(App)

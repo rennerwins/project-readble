@@ -48,7 +48,6 @@ class PostContainer extends Component {
 
 	render() {
 		const { post, votePost, voteComment, comment, createComment } = this.props
-		console.log(this.props)
 
 		return (
 			<div>
@@ -92,15 +91,17 @@ class PostContainer extends Component {
 							</div>
 						)}
 
-						<div className="col-12 col-lg-8 mt-3">
-							<div className="card">
-								<div className="card-body">
-									<h5>Add New Comment</h5>
-									<hr />
-									<CreateComment parentId={post.id} />
+						{!createComment.editing && (
+							<div className="col-12 col-lg-8 mt-3">
+								<div className="card">
+									<div className="card-body">
+										<h5>Add New Comment</h5>
+										<hr />
+										<CreateComment parentId={post.id} />
+									</div>
 								</div>
 							</div>
-						</div>
+						)}
 					</div>
 				)}
 

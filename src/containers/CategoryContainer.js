@@ -9,6 +9,19 @@ import NotFound from './NotFound'
 class CategoryContainer extends Component {
 	componentDidMount() {
 		const { category } = this.props.match.params
+		this.fetchPosts(category)
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		const prevCategory = prevProps.match.params.category
+		const currentCategory = this.props.match.params.category
+
+		if (currentCategory !== prevCategory) {
+			this.fetchPosts(currentCategory)
+		}
+	}
+
+	fetchPosts = category => {
 		this.props.fetchPostsFromCategory(category)
 		this.props.sortByScore('high')
 	}
@@ -49,11 +62,17 @@ class CategoryContainer extends Component {
 						</div>
 
 						<div className="row">
-							{this.props.post.map((p, index) => (
-								<div className="col-12 col-md-6 col-lg-4" key={p.id}>
-									<PostCard post={p} votePost={this.props.votePost} />
+							{this.props.post.length > 0 ? (
+								this.props.post.map((p, index) => (
+									<div className="col-12 col-md-6 col-lg-4" key={p.id}>
+										<PostCard post={p} votePost={this.props.votePost} />
+									</div>
+								))
+							) : (
+								<div className="col-12">
+									<h3>No Post Found</h3>
 								</div>
-							))}
+							)}
 						</div>
 					</div>
 				) : (
