@@ -13,6 +13,7 @@ const TextArea = ({ label, change, value, rows, disabled }) => {
 				value={value}
 				rows={rows || 3}
 				disabled={disabled}
+				required
 			/>
 		</div>
 	)

@@ -23,9 +23,11 @@ class CreatePostContainer extends Component {
 			category: lowerCategory
 		}
 
-		api.createNewPost(post)
-		this.props.clearNewPost()
-		this.props.history.push(`/${lowerCategory}/${id}`)
+		if (title.length > 0 && body.length > 0 && author.length > 0) {
+			api.createNewPost(post)
+			this.props.clearNewPost()
+			this.props.history.push(`/${lowerCategory}/${id}`)
+		}
 	}
 
 	handleClearForm = () => {
@@ -42,57 +44,60 @@ class CreatePostContainer extends Component {
 						<h1>Create New Post</h1>
 					</div>
 				</div>
+				<form onSubmit={this.handleCreatePost}>
+					<div className="row justify-content-lg-center">
+						<div className="col-12 col-lg-8">
+							<InputText
+								required
+								label="Title"
+								change={e =>
+									this.props.createNewPost({ title: e.target.value })}
+								value={create.title}
+							/>
 
-				<div className="row justify-content-lg-center">
-					<div className="col-12 col-lg-8">
-						<InputText
-							label="Title"
-							change={e => this.props.createNewPost({ title: e.target.value })}
-							value={create.title}
-						/>
+							<TextArea
+								required
+								label="Body"
+								change={e => this.props.createNewPost({ body: e.target.value })}
+								value={create.body}
+							/>
 
-						<TextArea
-							label="Body"
-							change={e => this.props.createNewPost({ body: e.target.value })}
-							value={create.body}
-						/>
+							<SelectOption
+								label="Category"
+								value={create.category}
+								change={e =>
+									this.props.createNewPost({ category: e.target.value })}
+							/>
 
-						<SelectOption
-							label="Category"
-							value={create.category}
-							change={e =>
-								this.props.createNewPost({ category: e.target.value })}
-						/>
+							<InputText
+								required
+								label="Author"
+								change={e =>
+									this.props.createNewPost({ author: e.target.value })}
+								value={create.author}
+							/>
 
-						<InputText
-							label="Author"
-							change={e => this.props.createNewPost({ author: e.target.value })}
-							value={create.author}
-						/>
+							<div className="row">
+								<div className="col-12">
+									<div className="float-left">
+										<button
+											className="btn btn-default"
+											onClick={this.handleClearForm}
+										>
+											Cancel
+										</button>
+									</div>
 
-						<div className="row">
-							<div className="col-12">
-								<div className="float-left">
-									<button
-										className="btn btn-default"
-										onClick={this.handleClearForm}
-									>
-										Cancel
-									</button>
-								</div>
-
-								<div className="float-right">
-									<button
-										className="btn btn-primary"
-										onClick={this.handleCreatePost}
-									>
-										Submit
-									</button>
+									<div className="float-right">
+										<button className="btn btn-primary" type="submit">
+											Submit
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 		)
 	}

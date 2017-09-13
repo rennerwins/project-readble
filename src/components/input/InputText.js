@@ -11,6 +11,7 @@ const InputText = ({ label, change, value, disabled }) => {
 				onChange={change}
 				value={value || ''}
 				disabled={disabled}
+				required
 			/>
 		</div>
 	)

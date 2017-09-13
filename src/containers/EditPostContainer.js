@@ -54,62 +54,58 @@ class CreatePostContainer extends Component {
 								<h1>Edit Post</h1>
 							</div>
 						</div>
+						<form onSubmit={this.handleCreatePost}>
+							<div className="row justify-content-lg-center">
+								<div className="col-12 col-lg-8">
+									<InputText
+										label="Title"
+										change={e =>
+											this.props.createNewPost({ title: e.target.value })}
+										value={create.title}
+									/>
 
-						<div className="row justify-content-lg-center">
-							<div className="col-12 col-lg-8">
-								<InputText
-									label="Title"
-									change={e =>
-										this.props.createNewPost({ title: e.target.value })}
-									value={create.title}
-								/>
+									<TextArea
+										label="Body"
+										change={e =>
+											this.props.createNewPost({ body: e.target.value })}
+										value={create.body}
+									/>
 
-								<TextArea
-									label="Body"
-									change={e =>
-										this.props.createNewPost({ body: e.target.value })}
-									value={create.body}
-								/>
+									<SelectOption
+										disabled
+										label="Category"
+										value={post.category}
+										change={e =>
+											this.props.createNewPost('category', e.target.value)}
+									/>
 
-								<SelectOption
-									disabled
-									label="Category"
-									value={post.category}
-									change={e =>
-										this.props.createNewPost('category', e.target.value)}
-								/>
+									<InputText
+										disabled
+										label="Author"
+										change={e =>
+											this.props.createNewPost('author', e.target.value)}
+										value={post.author}
+									/>
 
-								<InputText
-									disabled
-									label="Author"
-									change={e =>
-										this.props.createNewPost('author', e.target.value)}
-									value={post.author}
-								/>
+									<div className="row">
+										<div className="col-12">
+											<div className="float-left">
+												<button
+													className="btn btn-default"
+													onClick={this.handleClearForm}
+												>
+													Cancel
+												</button>
+											</div>
 
-								<div className="row">
-									<div className="col-12">
-										<div className="float-left">
-											<button
-												className="btn btn-default"
-												onClick={this.handleClearForm}
-											>
-												Cancel
-											</button>
-										</div>
-
-										<div className="float-right">
-											<button
-												className="btn btn-primary"
-												onClick={this.handleCreatePost}
-											>
-												Submit
-											</button>
+											<div className="float-right">
+												<button className="btn btn-primary">Submit</button>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 				)}
 			</div>
@@ -125,6 +121,4 @@ const mapStateToProps = ({ post, create }, ownProps) => {
 	}
 }
 
-export default connect(mapStateToProps, createAction)(
-	CreatePostContainer
-)
+export default connect(mapStateToProps, createAction)(CreatePostContainer)

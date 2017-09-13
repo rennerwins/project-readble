@@ -23,10 +23,12 @@ class CreateComment extends Component {
 			parentId
 		}
 
-		api.createNewComment(comment).then(() => {
-			this.props.fetchComments(parentId)
-		})
-		this.handleClearForm()
+		if (body.length > 0 && author.length > 0) {
+			api.createNewComment(comment).then(() => {
+				this.props.fetchComments(parentId)
+			})
+			this.handleClearForm()
+		}
 	}
 
 	handleClearForm = () => {
@@ -37,36 +39,41 @@ class CreateComment extends Component {
 		const { createComment } = this.props
 		return (
 			<div>
-				<TextArea
-					label="Body"
-					change={e => this.props.createNewComment({ body: e.target.value })}
-					value={createComment.body}
-				/>
+				<form onSubmit={this.handleComment}>
+					<TextArea
+						required
+						label="Body"
+						change={e => this.props.createNewComment({ body: e.target.value })}
+						value={createComment.body}
+					/>
 
-				<InputText
-					label="Author"
-					change={e => this.props.createNewComment({author: e.target.value})}
-					value={createComment.author}
-				/>
+					<InputText
+						required
+						label="Author"
+						change={e =>
+							this.props.createNewComment({ author: e.target.value })}
+						value={createComment.author}
+					/>
 
-				<div className="row">
-					<div className="col-12">
-						<div className="float-left">
-							<button
-								className="btn btn-default"
-								onClick={this.handleClearForm}
-							>
-								Cancel
-							</button>
-						</div>
+					<div className="row">
+						<div className="col-12">
+							<div className="float-left">
+								<button
+									className="btn btn-default"
+									onClick={this.handleClearForm}
+								>
+									Cancel
+								</button>
+							</div>
 
-						<div className="float-right">
-							<button className="btn btn-primary" onClick={this.handleComment}>
-								Submit
-							</button>
+							<div className="float-right">
+								<button type="submit" className="btn btn-primary">
+									Submit
+								</button>
+							</div>
 						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 		)
 	}

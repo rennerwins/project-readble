@@ -8,19 +8,20 @@ import api from '../../api'
 class EditComment extends Component {
 	componentDidMount() {
 		const { comment, createComment } = this.props
-    let body = comment[createComment.id].body
-    this.props.createNewComment({ body })
+		let body = comment[createComment.id].body
+		this.props.createNewComment({ body })
 	}
 
 	handleClearForm = () => {
-    this.props.createNewComment({
-      id: '',
-      editing: false,
-      body: ''
-    })
+		this.props.createNewComment({
+			id: '',
+			editing: false,
+			body: ''
+		})
 	}
 
-	submitEditComment = commentId => {
+	submitEditComment = (e, commentId) => {
+		e.preventDefault()
 		const { body } = this.props.createComment
 		const { postId } = this.props
 		let timestamp = Date.now()
@@ -29,10 +30,13 @@ class EditComment extends Component {
 			body,
 			commentId
 		}
-		api.editComment(comment).then(res => {
-      this.handleClearForm()
-			this.props.fetchComments(postId)
-		})
+
+		if (body.length > 0) {
+			api.editComment(comment).then(res => {
+				this.handleClearForm()
+				this.props.fetchComments(postId)
+			})
+		}
 	}
 
 	render() {
@@ -41,27 +45,35 @@ class EditComment extends Component {
 		return (
 			<div className="row my-3">
 				<div className="col-12">
-					<TextArea
-						change={e => this.props.createNewComment({ body: e.target.value })}
-						value={createComment.body}
-					/>
-				</div>
+					<form onSubmit={(e) => this.submitEditComment(e, createComment.id)}>
+						<div className="col-12">
+							<TextArea
+								change={e =>
+									this.props.createNewComment({ body: e.target.value })}
+								value={createComment.body}
+							/>
+						</div>
 
-				<div className="col-12">
-					<div className="float-left">
-						<button className="btn btn-default" onClick={this.handleClearForm}>
-							Cancel
-						</button>
-					</div>
+						<div className="col-12">
+							<div className="float-left">
+								<button
+									className="btn btn-default"
+									onClick={this.handleClearForm}
+								>
+									Cancel
+								</button>
+							</div>
 
-					<div className="float-right">
-						<button
-							className="btn btn-primary"
-							onClick={() => this.submitEditComment(createComment.id)}
-						>
-							Submit
-						</button>
-					</div>
+							<div className="float-right">
+								<button
+									type="submit"
+									className="btn btn-primary"
+								>
+									Submit
+								</button>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		)
