@@ -1,10 +1,7 @@
 import React from 'react'
 import moment from 'moment'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-
-const Thumbs = styled.span`cursor: pointer;`
 
 const PostCard = ({ post, votePost, index }) => {
 	return (
@@ -24,21 +21,21 @@ const PostCard = ({ post, votePost, index }) => {
 
 			<div className="card-footer">
 				<small className="float-left">
-					<Thumbs className="mr-3" onClick={() => votePost(post.id, 'upVote')}>
-						<i className="fa fa-thumbs-o-up" aria-hidden="true" />
-					</Thumbs>
+					<span className="mr-3" onClick={() => votePost(post.id, 'upVote')}>
+						<i className="fa fa-thumbs-o-up thumbs" aria-hidden="true" />
+					</span>
 					<span>
 						<b>{post.voteScore}</b>
 					</span>
-					<Thumbs
+					<span
 						className="ml-3"
 						onClick={() => votePost(post.id, 'downVote')}
 					>
-						<i className="fa fa-thumbs-o-down" aria-hidden="true" />
-					</Thumbs>
+						<i className="fa fa-thumbs-o-down thumbs" aria-hidden="true" />
+					</span>
 				</small>
 
-				<small className="text-muted float-right">
+				<small className="text-muted float-right time">
 					{moment(post.timestamp).format('L')}{' '}
 					{moment(post.timestamp).format('LT')}
 				</small>

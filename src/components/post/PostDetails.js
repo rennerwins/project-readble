@@ -1,14 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-
-const Time = styled.small`
-	font-style: italic;
-	margin-left: 10px;
-`
-const Thumbs = styled.span`cursor: pointer;`
 
 const PostDetails = ({ post, votePost, deletePost }) => {
 	return (
@@ -19,10 +12,10 @@ const PostDetails = ({ post, votePost, deletePost }) => {
 						<h3 className="card-title">{post.title}</h3>
 						<h6 className="card-subtitle mb-2 text-muted">
 							{post.author}{' '}
-							<Time>
+							<small className="time">
 								{moment(post.timestamp).format('L')}{' '}
 								{moment(post.timestamp).format('LT')}
-							</Time>
+							</small>
 						</h6>
 						<p className="card-text mt-4 mb-0">{post.body}</p>
 						<Link to={post.category} className="badge badge-light">
@@ -34,31 +27,31 @@ const PostDetails = ({ post, votePost, deletePost }) => {
 				<div className="row">
 					<div className="col-12">
 						<small className="float-left">
-							<Thumbs
-								className="mr-3"
+							<span
+								className="mr-3 thumbs"
 								onClick={() => votePost(post.id, 'upVote')}
 							>
 								<i className="fa fa-thumbs-o-up" aria-hidden="true" />
-							</Thumbs>
+							</span>
 							<span>
 								<b>{post.voteScore}</b>
 							</span>
-							<Thumbs
-								className="ml-3"
+							<span
+								className="ml-3 thumbs"
 								onClick={() => votePost(post.id, 'downVote')}
 							>
 								<i className="fa fa-thumbs-o-down" aria-hidden="true" />
-							</Thumbs>
+							</span>
 						</small>
 
 						<small className="float-right">
 							<Link to={`/${post.category}/${post.id}/edit`}>
-								<Thumbs className="mr-3">Edit</Thumbs>
+								<span className="mr-3 thumbs">Edit</span>
 							</Link>
 
-							<Thumbs onClick={() => deletePost(post.id)}>
-								<i className="fa fa-trash-o" aria-hidden="true" />
-							</Thumbs>
+							<span onClick={() => deletePost(post.id)}>
+								<i className="fa fa-trash-o thumbs" aria-hidden="true" />
+							</span>
 						</small>
 					</div>
 				</div>

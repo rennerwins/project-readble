@@ -12,6 +12,7 @@ import PostContainer from './containers/PostContainer'
 import CreatePostContainer from './containers/CreatePostContainer'
 import EditPostContainer from './containers/EditPostContainer'
 import Navbar from './components/Navbar'
+import './index.css'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 

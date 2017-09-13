@@ -1,18 +1,6 @@
 import React from 'react'
 import moment from 'moment'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
-
-const Time = styled.small`
-	font-style: italic;
-	margin-left: 10px;
-`
-const Thumbs = styled.span`cursor: pointer;`
-const CommentBody = styled.p`
-	border-left: 3px solid #ccc;
-	padding: 4px 0px 4px 6px;
-	margin-left: 1px;
-`
 
 const PostComment = ({ comment, voteComment, deleteComment, edit }) => {
 	return (
@@ -21,46 +9,46 @@ const PostComment = ({ comment, voteComment, deleteComment, edit }) => {
 				<div className="col-12">
 					<h6 className="card-subtitle mb-1">
 						{comment.author}{' '}
-						<Time className="text-muted">
+						<small className="text-muted time">
 							{moment(comment.timestamp).format('L')}{' '}
 							{moment(comment.timestamp).format('LT')}
-						</Time>
+						</small>
 					</h6>
 				</div>
 			</div>
 
 			<div className="row mb-1">
 				<div className="col-12">
-					<CommentBody className="card-text">{comment.body}</CommentBody>
+					<p className="card-text comment-body">{comment.body}</p>
 				</div>
 			</div>
 
 			<div className="row">
 				<div className="col-12">
 					<small className="float-left">
-						<Thumbs
-							className="mr-3"
+						<span
+							className="mr-3 thumbs"
 							onClick={() => voteComment(comment.id, 'upVote')}
 						>
 							<i className="fa fa-thumbs-o-up" aria-hidden="true" />
-						</Thumbs>
+						</span>
 						<span>
 							<b>{comment.voteScore}</b>
 						</span>
-						<Thumbs
-							className="ml-3"
+						<span
+							className="ml-3 thumbs"
 							onClick={() => voteComment(comment.id, 'downVote')}
 						>
 							<i className="fa fa-thumbs-o-down" aria-hidden="true" />
-						</Thumbs>
+						</span>
 					</small>
 
 					<small className="float-right">
-						<Thumbs className="mr-3" onClick={() => edit(comment.id)}>Edit</Thumbs>
+						<span className="mr-3 thumbs" onClick={() => edit(comment.id)}>Edit</span>
 
-						<Thumbs onClick={() => deleteComment(comment.id)}>
+						<span className="thumbs" onClick={() => deleteComment(comment.id)}>
 							<i className="fa fa-trash-o" aria-hidden="true" />
-						</Thumbs>
+						</span>
 					</small>
 				</div>
 			</div>
