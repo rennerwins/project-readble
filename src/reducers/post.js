@@ -5,7 +5,8 @@ import {
 	GET_VOTE_POST,
 	GET_POST,
 	SORT_BY_RECENT,
-	SORT_BY_SCORE
+	SORT_BY_SCORE,
+	DELETE_POST
 } from '../actions/types'
 
 const post = (state = {}, action) => {
@@ -58,6 +59,16 @@ const post = (state = {}, action) => {
 				? (sortByScore = _.reverse(_.sortBy(state, 'voteScore')))
 				: (sortByScore = _.sortBy(state, 'voteScore'))
 			return _.mapKeys(sortByScore, 'id')
+		}
+
+		case DELETE_POST: {
+			return {
+				...state,
+				[action.id]: {
+					...state[action.id],
+					deleted: true
+				}
+			}
 		}
 
 		default:

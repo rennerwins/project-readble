@@ -3,7 +3,8 @@ import {
 	GET_ALL_POST,
 	GET_POSTS_FROM_CATEGORY,
 	GET_VOTE_POST,
-	GET_POST
+	GET_POST,
+	DELETE_POST
 } from './types'
 
 // action creators
@@ -29,15 +30,25 @@ export const getPost = post => ({
 	post
 })
 
+export const deletedPost = id => ({
+	type: DELETE_POST,
+	id
+})
+
 // ajax
 export const fetchAllPost = () => dispatch => {
-	api.getAllPost().then(({ data }) => dispatch(getAllPost(data)))
+	api.getAllPost().then(({ data }) => {
+		const openPost = data.filter(post => !post.deleted)
+		dispatch(getAllPost(openPost))
+	})
 }
 
 export const fetchPostsFromCategory = category => dispatch => {
 	api
 		.getPostsFromCategory(category)
-		.then(({ data }) => dispatch(getPostsFromCategory(category, data)))
+		.then(({ data }) => {
+			dispatch(getPostsFromCategory(category, data))
+		})
 }
 
 export const votePost = (id, option) => dispatch => {
@@ -48,6 +59,10 @@ export const votePost = (id, option) => dispatch => {
 
 export const fetchPost = postID => dispatch => {
 	api.getPost(postID).then(({ data }) => {
-		dispatch(getPost(data))
+		data.id && dispatch(getPost(data))
 	})
+}
+
+export const deletePost = postID => dispatch => {
+	api.deletePost(postID).then(() => dispatch(deletedPost(postID)))
 }

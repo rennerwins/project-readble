@@ -16,6 +16,7 @@ export const GET_ALL_POST = 'GET_ALL_POST'
 export const GET_POSTS_FROM_CATEGORY = 'GET_POSTS_FROM_CATEGORY'
 export const GET_VOTE_POST = 'GET_VOTE_POST'
 export const GET_POST = 'GET_POST'
+export const DELETE_POST = 'DELETE_POST'
 
 // sort
 export const SORT_BY_RECENT = 'SORT_BY_RECENT'

@@ -11,15 +11,13 @@ import CategoryContainer from './containers/CategoryContainer'
 import PostContainer from './containers/PostContainer'
 import CreatePostContainer from './containers/CreatePostContainer'
 import EditPostContainer from './containers/EditPostContainer'
+import NotFound from './containers/NotFound'
 import Navbar from './components/Navbar'
 import './index.css'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(
-	rootReducer,
-	composeEnhancers(applyMiddleware(thunk))
-)
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 ReactDOM.render(
 	<Provider store={store}>
@@ -29,7 +27,7 @@ ReactDOM.render(
 				<div className="container">
 					<Switch>
 						<Route exact path="/" component={App} />
-						<Route path="/create" component={CreatePostContainer} />
+						<Route exact path="/create" component={CreatePostContainer} />
 						<Route
 							path="/:category/:post_id/edit"
 							component={EditPostContainer}
@@ -37,6 +35,7 @@ ReactDOM.render(
 						<Route path="/:category/:post_id" component={PostContainer} />
 
 						<Route path="/:category" component={CategoryContainer} />
+						<Route component={NotFound} />
 					</Switch>
 				</div>
 			</div>

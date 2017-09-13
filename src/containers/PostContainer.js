@@ -8,6 +8,8 @@ import PostComment from '../components/comment/PostComment'
 import CreateComment from '../components/comment/CreateComment'
 import SortList from '../components/sort/SortList'
 import EditComment from '../components/comment/EditComment'
+import NotFound from './NotFound'
+import { Link } from 'react-router-dom'
 import api from '../api'
 
 class PostContainer extends Component {
@@ -19,8 +21,7 @@ class PostContainer extends Component {
 	}
 
 	handleDeletePost = postID => {
-		api.deletePost(postID)
-		this.props.history.push('/')
+		this.props.deletePost(postID)
 	}
 
 	handleDeleteComment = commentID => {
@@ -47,10 +48,12 @@ class PostContainer extends Component {
 
 	render() {
 		const { post, votePost, voteComment, comment, createComment } = this.props
+		console.log(this.props)
 
 		return (
 			<div>
-				{post !== undefined && (
+				{post !== undefined &&
+				!post.deleted && (
 					<div className="row my-3 justify-content-lg-center">
 						<div className="col-12 col-lg-8">
 							<PostDetails
@@ -78,9 +81,10 @@ class PostContainer extends Component {
 													deleteComment={this.handleDeleteComment}
 													edit={this.handleEditComment}
 												/>
-												{
-													createComment.id === c.id && createComment.editing === true && <EditComment postId={c.parentId} />
-												}
+												{createComment.id === c.id &&
+												createComment.editing === true && (
+													<EditComment postId={c.parentId} />
+												)}
 											</div>
 										))}
 									</div>
@@ -99,6 +103,18 @@ class PostContainer extends Component {
 						</div>
 					</div>
 				)}
+
+				{post !== undefined &&
+				post.deleted && (
+					<div className="row my-3 justify-content-lg-center">
+						<div className="col-12 col-lg-8">
+							<h1>Post Deleted</h1>
+							<Link to="/">Home</Link>
+						</div>
+					</div>
+				)}
+
+				{post === undefined && <NotFound />}
 			</div>
 		)
 	}

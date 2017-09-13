@@ -27,10 +27,7 @@ const PostCard = ({ post, votePost, index }) => {
 					<span>
 						<b>{post.voteScore}</b>
 					</span>
-					<span
-						className="ml-3"
-						onClick={() => votePost(post.id, 'downVote')}
-					>
+					<span className="ml-3" onClick={() => votePost(post.id, 'downVote')}>
 						<i className="fa fa-thumbs-o-down thumbs" aria-hidden="true" />
 					</span>
 				</small>
