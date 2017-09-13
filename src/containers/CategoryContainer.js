@@ -4,6 +4,7 @@ import * as sortAction from '../actions/sort'
 import * as postAction from '../actions/post'
 import PostCard from '../components/post/PostCard'
 import SortList from '../components/sort/SortList'
+import NotFound from './NotFound'
 
 class CategoryContainer extends Component {
 	componentDidMount() {
@@ -28,28 +29,36 @@ class CategoryContainer extends Component {
 
 		return (
 			<div>
-				<div className="row mt-3">
-					<div className="col-12">
-						<h1 className="text-capitalize">{category}</h1>
-					</div>
-				</div>
-
-				<div className="row my-3">
-					<div className="col-12">
-						<SortList
-							sort={this.props.sort}
-							handleSortChange={this.handleSortChange}
-						/>
-					</div>
-				</div>
-
-				<div className="row">
-					{this.props.post.map((p, index) => (
-						<div className="col-12 col-md-6 col-lg-4" key={p.id}>
-							<PostCard post={p} votePost={this.props.votePost} />
+				{category === 'react' ||
+				category === 'redux' ||
+				category === 'udacity' ? (
+					<div>
+						<div className="row mt-3">
+							<div className="col-12">
+								<h1 className="text-capitalize">{category}</h1>
+							</div>
 						</div>
-					))}
-				</div>
+
+						<div className="row my-3">
+							<div className="col-12">
+								<SortList
+									sort={this.props.sort}
+									handleSortChange={this.handleSortChange}
+								/>
+							</div>
+						</div>
+
+						<div className="row">
+							{this.props.post.map((p, index) => (
+								<div className="col-12 col-md-6 col-lg-4" key={p.id}>
+									<PostCard post={p} votePost={this.props.votePost} />
+								</div>
+							))}
+						</div>
+					</div>
+				) : (
+					<NotFound />
+				)}
 			</div>
 		)
 	}
