@@ -1,10 +1,10 @@
 import api from '../api'
-
-// actions
-export const GET_ALL_POST = 'GET_ALL_POST'
-export const GET_POSTS_FROM_CATEGORY = 'GET_POSTS_FROM_CATEGORY'
-export const GET_VOTE_POST = 'GET_VOTE_POST'
-export const GET_POST = 'GET_POST'
+import {
+	GET_ALL_POST,
+	GET_POSTS_FROM_CATEGORY,
+	GET_VOTE_POST,
+	GET_POST
+} from './types'
 
 // action creators
 export const getAllPost = posts => ({

@@ -11,11 +11,6 @@ import EditComment from '../components/comment/EditComment'
 import api from '../api'
 
 class PostContainer extends Component {
-	state = {
-		editing: false,
-		cid: ''
-	}
-
 	componentDidMount() {
 		let { post_id } = this.props.match.params
 		this.props.fetchPost(post_id)

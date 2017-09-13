@@ -1,4 +1,4 @@
-import { CREATE_NEW_POST, CLEAR_NEW_POST } from '../actions/create'
+import { CREATE_NEW_POST, CLEAR_NEW_POST } from '../actions/types'
 
 const initialCreateState = {
 	id: '',

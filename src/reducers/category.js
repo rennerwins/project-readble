@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { GET_ALL_CATEGORY } from '../actions/category'
+import { GET_ALL_CATEGORY } from '../actions/types'
 
 const category = (state = {}, action) => {
 	switch (action.type) {

@@ -3,12 +3,10 @@ import {
 	GET_ALL_POST,
 	GET_POSTS_FROM_CATEGORY,
 	GET_VOTE_POST,
-	GET_POST
-} from '../actions/post'
-import { 
-  SORT_BY_RECENT,
+	GET_POST,
+	SORT_BY_RECENT,
 	SORT_BY_SCORE
-} from '../actions/sort'
+} from '../actions/types'
 
 const post = (state = {}, action) => {
 	switch (action.type) {

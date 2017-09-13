@@ -1,4 +1,4 @@
-import { SORT_BY_RECENT, SORT_BY_SCORE } from '../actions/sort'
+import { SORT_BY_RECENT, SORT_BY_SCORE } from '../actions/types'
 
 const sort = (state = 'high', action) => {
 	switch (action.type) {

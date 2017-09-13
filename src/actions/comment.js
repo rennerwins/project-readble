@@ -1,9 +1,5 @@
 import api from '../api'
-
-// actions
-export const GET_COMMENTS = 'GET_COMMENTS'
-export const GET_VOTE_COMMENT = 'GET_VOTE_COMMENT'
-export const EDIT_COMMENT = 'EDIT_COMMENT'
+import { GET_COMMENTS, GET_VOTE_COMMENT, EDIT_COMMENT } from './types'
 
 // action creators
 export const getComments = (id, comments) => ({

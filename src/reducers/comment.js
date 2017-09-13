@@ -1,6 +1,10 @@
 import _ from 'lodash'
-import { GET_COMMENTS, GET_VOTE_COMMENT } from '../actions/comment'
-import { SORT_BY_RECENT, SORT_BY_SCORE } from '../actions/sort'
+import {
+	GET_COMMENTS,
+	GET_VOTE_COMMENT,
+	SORT_BY_RECENT,
+	SORT_BY_SCORE
+} from '../actions/types'
 
 const comment = (state = {}, action) => {
 	switch (action.type) {

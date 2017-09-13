@@ -1,5 +1,8 @@
-import { CLEAR_NEW_POST, CREATE_NEW_COMMENT } from '../actions/create'
-import { EDIT_COMMENT } from '../actions/comment'
+import {
+	EDIT_COMMENT,
+	CLEAR_NEW_POST,
+	CREATE_NEW_COMMENT
+} from '../actions/types'
 
 const initialCreateCommentState = {
 	id: '',
