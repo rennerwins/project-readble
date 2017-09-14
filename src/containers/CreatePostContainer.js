@@ -34,7 +34,8 @@ class CreatePostContainer extends Component {
 		}
 	}
 
-	handleClearForm = () => {
+	handleClearForm = e => {
+		e.preventDefault()
 		this.props.clearNewPost()
 		this.props.history.push('/')
 	}

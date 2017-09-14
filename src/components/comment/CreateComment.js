@@ -32,7 +32,8 @@ class CreateComment extends Component {
 		}
 	}
 
-	handleClearForm = () => {
+	handleClearForm = e => {
+		e.preventDefault()
 		this.props.clearNewPost()
 	}
 
@@ -40,16 +41,18 @@ class CreateComment extends Component {
 		const { createComment } = this.props
 		return (
 			<div>
-				<form onSubmit={(e) => this.handleComment(e)}>
+				<form onSubmit={e => this.handleComment(e)}>
 					<TextArea
 						required
+						disabled={createComment.editing}
 						label="Body"
 						change={e => this.props.createNewComment({ body: e.target.value })}
-						value={createComment.body}
+						value={!createComment.editing ? createComment.body : ''}
 					/>
 
 					<InputText
 						required
+						disabled={createComment.editing}
 						label="Author"
 						change={e =>
 							this.props.createNewComment({ author: e.target.value })}

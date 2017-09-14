@@ -12,7 +12,8 @@ class EditComment extends Component {
 		this.props.createNewComment({ body })
 	}
 
-	handleClearForm = () => {
+	handleClearForm = e => {
+		e.preventDefault()
 		this.props.createNewComment({
 			id: '',
 			editing: false,
@@ -45,12 +46,13 @@ class EditComment extends Component {
 		return (
 			<div className="row my-3">
 				<div className="col-12">
-					<form onSubmit={(e) => this.submitEditComment(e, createComment.id)}>
+					<form onSubmit={e => this.submitEditComment(e, createComment.id)}>
 						<div className="col-12">
 							<TextArea
+								disabled={!createComment.editing}
 								change={e =>
 									this.props.createNewComment({ body: e.target.value })}
-								value={createComment.body}
+								value={createComment.editing ? createComment.body : ''}
 							/>
 						</div>
 
@@ -65,10 +67,7 @@ class EditComment extends Component {
 							</div>
 
 							<div className="float-right">
-								<button
-									type="submit"
-									className="btn btn-primary"
-								>
+								<button type="submit" className="btn btn-primary">
 									Submit
 								</button>
 							</div>

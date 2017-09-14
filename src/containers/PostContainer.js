@@ -91,17 +91,15 @@ class PostContainer extends Component {
 							</div>
 						)}
 
-						{!createComment.editing && (
-							<div className="col-12 col-lg-8 mt-3">
-								<div className="card">
-									<div className="card-body">
-										<h5>Add New Comment</h5>
-										<hr />
-										<CreateComment parentId={post.id} />
-									</div>
+						<div className="col-12 col-lg-8 mt-3">
+							<div className="card">
+								<div className="card-body">
+									<h5>Add New Comment</h5>
+									<hr />
+									<CreateComment parentId={post.id} />
 								</div>
 							</div>
-						)}
+						</div>
 					</div>
 				)}
 

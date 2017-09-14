@@ -37,7 +37,8 @@ class CreatePostContainer extends Component {
 		}
 	}
 
-	handleClearForm = () => {
+	handleClearForm = e => {
+		e.preventDefault()
 		const { category, id } = this.props.create
 		let lowerCategory = category.toLowerCase()
 		this.props.history.push(`/${lowerCategory}/${id}`)
