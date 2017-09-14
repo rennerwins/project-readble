@@ -8,6 +8,10 @@ import api from '../api'
 import uniqid from 'uniqid'
 
 class CreatePostContainer extends Component {
+	componentDidMount() {
+		this.props.clearNewPost()
+	}
+	
 	handleCreatePost = e => {
 		const { title, body, category, author } = this.props.create
 		let id = uniqid()

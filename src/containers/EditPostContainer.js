@@ -30,8 +30,11 @@ class CreatePostContainer extends Component {
 			id
 		}
 
-		api.editPost(post)
-		this.props.history.push(`/${lowerCategory}/${id}`)
+		if (title.length > 0 && body.length > 0) {
+			api.editPost(post)
+			this.handleClearForm()
+			this.props.history.push(`/${lowerCategory}/${id}`)
+		}
 	}
 
 	handleClearForm = () => {
