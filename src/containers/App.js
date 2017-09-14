@@ -27,6 +27,9 @@ class App extends Component {
 			<div>
 				<div className="row my-3">
 					<div className="col-12">
+						<h1>Readable</h1>
+					</div>
+					<div className="col-12">
 						<SortList
 							sort={this.props.sort}
 							handleSortChange={this.handleSortChange}

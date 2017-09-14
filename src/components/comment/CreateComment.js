@@ -9,6 +9,7 @@ import api from '../../api'
 
 class CreateComment extends Component {
 	handleComment = e => {
+		e.preventDefault()
 		const { body, author } = this.props.createComment
 		const { parentId } = this.props
 
@@ -39,7 +40,7 @@ class CreateComment extends Component {
 		const { createComment } = this.props
 		return (
 			<div>
-				<form onSubmit={this.handleComment}>
+				<form onSubmit={(e) => this.handleComment(e)}>
 					<TextArea
 						required
 						label="Body"
