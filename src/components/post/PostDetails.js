@@ -18,7 +18,7 @@ const PostDetails = ({ post, votePost, deletePost }) => {
 							</small>
 						</h6>
 						<p className="card-text mt-4 mb-0">{post.body}</p>
-						<Link to={post.category} className="badge badge-light">
+						<Link to={`/${post.category}`} className="badge badge-light">
 							{post.category}
 						</Link>
 					</div>
