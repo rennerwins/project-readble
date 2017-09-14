@@ -23,7 +23,8 @@ TextArea.propTypes = {
 	label: PropTypes.string,
 	change: PropTypes.func.isRequired,
 	value: PropTypes.string,
-	rows: PropTypes.number
+	rows: PropTypes.number,
+	disabled: PropTypes.bool
 }
 
 export default TextArea
