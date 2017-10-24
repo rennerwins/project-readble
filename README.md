@@ -1,4 +1,8 @@
 Readable is a content and comment web app assignment project for [Udacity's React Nanodegree Project](https://www.udacity.com/course/react-nanodegree--nd019).
+- All the state are manage by Redux's store.
+- User can create, read, update and delete content with specific category.
+- User can create, read, update and delete comments in a specific content.
+- User can upvote and downvote both contents and comments.
 
 ## Usage
 
