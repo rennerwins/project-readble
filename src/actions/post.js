@@ -55,7 +55,9 @@ export const votePost = (id, option) => (dispatch) => {
 
 export const fetchPost = postID => (dispatch) => {
   api.getPost(postID).then(({ data }) => {
-    data.id && dispatch(getPost(data));
+    if (data.id) {
+      dispatch(getPost(data));
+    }
   });
 };
 
