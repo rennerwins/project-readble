@@ -25,6 +25,7 @@ module.exports = {
     'import/extensions': 0,
     'import/no-named-as-default': 0,
     'import/no-named-as-default-member': 0,
+    'import/prefer-default-export': 0,
     'no-underscore-dangle': 0,
     'consistent-return': 0,
     'react/display-name': 1,
@@ -32,6 +33,7 @@ module.exports = {
     'react/forbid-prop-types': 0,
     'react/no-unescaped-entities': 0,
     'no-undef': 0,
+    'jsx-a11y/anchor-is-valid': { components: ['Link'] },
     'react/jsx-filename-extension': [
       1,
       {
