@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import * as sortAction from '../actions/sort';
 import * as postAction from '../actions/post';
 import PostCard from '../components/post/PostCard';
@@ -10,8 +9,6 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchAllPost();
     this.props.sortByScore('high');
-
-    console.log('[App] did mount', this.props)
   }
 
   handleSortChange = e => {
