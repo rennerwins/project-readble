@@ -19,7 +19,17 @@ yarn install
 
 
 #### Start the Server
-Before testing the Readable web app, you need to start up local backend development server first by cloning or fork from this [git](https://github.com/udacity/reactnd-project-readable-starter). Install all the dependencies by following the step. Run the server by using either `npm` or `yarn`. The default developing port is `localhost:5001`.
+Before testing the Readable web app, you need to start up local backend development server first by changing directory to server folder. Install all the dependencies by following the step. Run the server by using either `npm` or `yarn`. 
+```
+#npm
+npm install
+```
+```
+#yarn
+yarn install
+```
+
+Then start up the server with:
 ```
 #npm
 npm run start
@@ -28,6 +38,7 @@ npm run start
 #yarn
 yarn start
 ```
+The default server developing port is `localhost:5001`.
 
 
 #### Start the Project
