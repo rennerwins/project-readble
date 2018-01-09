@@ -3,10 +3,11 @@ import * as actionTypes from '../actions/actionTypes';
 
 const comment = (state = {}, action) => {
   switch (action.type) {
-    case actionTypes.GET_COMMENTS:
+    case actionTypes.GET_COMMENTS: {
       const { comments } = action;
       const comment = _.reverse(_.sortBy(comments, 'voteScore'));
       return _.mapKeys(comment, 'id');
+    }
 
     case actionTypes.GET_VOTE_COMMENT: {
       return {
@@ -18,20 +19,18 @@ const comment = (state = {}, action) => {
       };
     }
 
-    case actionTypes.SORT_BY_RECENT: {
-      let sortByRecentPost;
-      action.sort === 'new'
-        ? (sortByRecentPost = _.reverse(_.sortBy(state, 'timestamp')))
-        : (sortByRecentPost = _.sortBy(state, 'timestamp'));
-      return _.mapKeys(sortByRecentPost, 'id');
-    }
+    case actionTypes.SORT_OPTION: {
+      let sortComment;
 
-    case actionTypes.SORT_BY_SCORE: {
-      let sortByScore;
+      action.sort === 'new'
+        ? (sortComment = _.reverse(_.sortBy(state, 'timestamp')))
+        : (sortComment = _.sortBy(state, 'timestamp'));
+
       action.sort === 'high'
-        ? (sortByScore = _.reverse(_.sortBy(state, 'voteScore')))
-        : (sortByScore = _.sortBy(state, 'voteScore'));
-      return _.mapKeys(sortByScore, 'id');
+        ? (sortComment = _.reverse(_.sortBy(state, 'voteScore')))
+        : (sortComment = _.sortBy(state, 'voteScore'));
+
+      return _.mapKeys(sortComment, 'id');
     }
 
     default:

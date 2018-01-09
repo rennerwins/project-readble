@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as sortAction from '../actions/sort';
+import React, { Component } from 'react';
+
 import * as postAction from '../actions/post';
+import * as sortAction from '../actions/sort';
+import NotFound from './NotFound';
 import PostCard from '../components/post/PostCard';
 import SortList from '../components/sort/SortList';
-import NotFound from './NotFound';
 
 class CategoryContainer extends Component {
   componentDidMount() {
@@ -23,18 +24,13 @@ class CategoryContainer extends Component {
 
   fetchPosts = category => {
     this.props.fetchPostsFromCategory(category);
-    this.props.sortByScore('high');
+    this.props.sortOption('high');
   };
 
   handleSortChange = e => {
     const { value } = e.target;
-    if (value === 'new' || value === 'old') {
-      this.props.sortByRecent(value);
-    }
 
-    if (value === 'high' || value === 'low') {
-      this.props.sortByScore(value);
-    }
+    this.props.sortOption(value);
   };
 
   render() {
@@ -81,11 +77,11 @@ class CategoryContainer extends Component {
 const mapStateToProps = ({ post, sort }) => {
   return {
     post: Object.keys(post).map(num => post[num]),
-    sort,
+    sort
   };
 };
 
 export default connect(mapStateToProps, {
   ...postAction,
-  ...sortAction,
+  ...sortAction
 })(CategoryContainer);

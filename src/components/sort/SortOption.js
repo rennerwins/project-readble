@@ -5,7 +5,7 @@ const SortOption = ({
   sort, handleSortChange, label, value
 }) => (
   <div className="form-check form-check-inline">
-    <label className="form-check-label">
+    <label htmlFor="sorting" className="form-check-label">
       <input
         className="form-check-input"
         type="radio"
@@ -24,7 +24,7 @@ SortOption.propTypes = {
   sort: PropTypes.string.isRequired,
   handleSortChange: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired
 };
 
 export default SortOption;

@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import React, { Component } from 'react';
 import uniqid from 'uniqid';
-import InputText from '../components/input/InputText';
-import TextArea from '../components/input/TextArea';
-import SelectOption from '../components/input/SelectOption';
+
 import * as createAction from '../actions/create';
 import api from '../api';
+import InputText from '../components/input/InputText';
+import SelectOption from '../components/input/SelectOption';
+import TextArea from '../components/input/TextArea';
 
 class CreatePostContainer extends Component {
   componentDidMount() {
@@ -24,7 +25,7 @@ class CreatePostContainer extends Component {
       title,
       body,
       author,
-      category: lowerCategory,
+      category: lowerCategory
     };
 
     if (title.length > 0 && body.length > 0 && author.length > 0) {

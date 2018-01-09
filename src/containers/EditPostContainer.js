@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import InputText from '../components/input/InputText';
-import TextArea from '../components/input/TextArea';
-import SelectOption from '../components/input/SelectOption';
-import * as createAction from '../actions/create';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import React, { Component } from 'react';
+
+import * as createAction from '../actions/create';
 import api from '../api';
+import InputText from '../components/input/InputText';
+import SelectOption from '../components/input/SelectOption';
+import TextArea from '../components/input/TextArea';
 
 class CreatePostContainer extends Component {
   componentDidMount() {
@@ -15,7 +16,7 @@ class CreatePostContainer extends Component {
         title,
         body,
         id,
-        category,
+        category
       });
     }
   }
@@ -27,7 +28,7 @@ class CreatePostContainer extends Component {
     let post = {
       title,
       body,
-      id,
+      id
     };
 
     if (title.length > 0 && body.length > 0) {
@@ -114,7 +115,7 @@ const mapStateToProps = ({ post, create }, ownProps) => {
   let postID = ownProps.match.params.post_id;
   return {
     post: post[postID],
-    create,
+    create
   };
 };
 

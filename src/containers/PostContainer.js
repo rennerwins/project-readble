@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+
 import * as commentAction from '../actions/comment';
-import * as sortAction from '../actions/sort';
 import * as postAction from '../actions/post';
-import PostDetails from '../components/post/PostDetails';
-import PostComment from '../components/comment/PostComment';
+import * as sortAction from '../actions/sort';
+import api from '../api';
 import CreateComment from '../components/comment/CreateComment';
-import SortList from '../components/sort/SortList';
 import EditComment from '../components/comment/EditComment';
 import NotFound from './NotFound';
-import { Link } from 'react-router-dom';
-import api from '../api';
+import PostComment from '../components/comment/PostComment';
+import PostDetails from '../components/post/PostDetails';
+import SortList from '../components/sort/SortList';
 
 class PostContainer extends Component {
   componentDidMount() {
     let { post_id } = this.props.match.params;
     this.props.fetchPost(post_id);
     this.props.fetchComments(post_id);
-    this.props.sortByScore('high');
+    this.props.sortOption('high');
   }
 
   handleDeletePost = postID => {
@@ -37,13 +38,8 @@ class PostContainer extends Component {
 
   handleSortChange = e => {
     const { value } = e.target;
-    if (value === 'new' || value === 'old') {
-      this.props.sortByRecent(value);
-    }
 
-    if (value === 'high' || value === 'low') {
-      this.props.sortByScore(value);
-    }
+    this.props.sortOption(value);
   };
 
   render() {
@@ -116,12 +112,12 @@ const mapStateToProps = ({ post, comment, sort, createComment }, ownProps) => {
     post: post[post_id],
     comment: Object.keys(comment).map(c => comment[c]),
     sort,
-    createComment,
+    createComment
   };
 };
 
 export default connect(mapStateToProps, {
   ...commentAction,
   ...sortAction,
-  ...postAction,
+  ...postAction
 })(PostContainer);

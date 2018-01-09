@@ -1,11 +1,13 @@
 import _ from 'lodash';
 import * as actionTypes from '../actions/actionTypes';
+import { sortList, reverseSortList } from '../utils/utility';
 
 const post = (state = {}, action) => {
   switch (action.type) {
     case actionTypes.GET_ALL_POST: {
       const { posts } = action;
-      const post = _.reverse(_.sortBy(posts, 'voteScore'));
+      const post = reverseSortList(posts, 'voteScore');
+      // const post = _.reverse(_.sortBy(posts, 'voteScore'));
       const mapPost = _.mapKeys(post, 'id');
       return {
         ...mapPost
@@ -20,7 +22,7 @@ const post = (state = {}, action) => {
 
     case actionTypes.GET_POSTS_FROM_CATEGORY: {
       const { posts } = action;
-      const post = _.reverse(_.sortBy(posts, 'voteScore'));
+      const post = reverseSortList(posts, 'voteScore');
       const mapPost = _.mapKeys(post, 'id');
       return {
         ...mapPost
@@ -37,20 +39,20 @@ const post = (state = {}, action) => {
       };
     }
 
-    case actionTypes.SORT_BY_RECENT: {
-      let sortByRecentPost;
-      action.sort === 'new'
-        ? (sortByRecentPost = _.reverse(_.sortBy(state, 'timestamp')))
-        : (sortByRecentPost = _.sortBy(state, 'timestamp'));
-      return _.mapKeys(sortByRecentPost, 'id');
-    }
+    case actionTypes.SORT_OPTION: {
+      let sortList;
 
-    case actionTypes.SORT_BY_SCORE: {
-      let sortByScore;
-      action.sort === 'high'
-        ? (sortByScore = _.reverse(_.sortBy(state, 'voteScore')))
-        : (sortByScore = _.sortBy(state, 'voteScore'));
-      return _.mapKeys(sortByScore, 'id');
+      if (action.sort === 'new') {
+        sortList = _.reverse(_.sortBy(state, 'timestamp'));
+      } else if (action.sort === 'old') {
+        sortList = _.sortBy(state, 'timestamp');
+      } else if (action.sort === 'high') {
+        sortList = _.reverse(_.sortBy(state, 'voteScore'));
+      } else if (action.sort === 'low') {
+        sortList = _.sortBy(state, 'voteScore');
+      }
+
+      return _.mapKeys(sortList, 'id');
     }
 
     case actionTypes.DELETE_POST: {

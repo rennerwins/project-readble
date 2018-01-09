@@ -21,3 +21,4 @@ export const DELETE_POST = 'DELETE_POST';
 // sort
 export const SORT_BY_RECENT = 'SORT_BY_RECENT';
 export const SORT_BY_SCORE = 'SORT_BY_SCORE';
+export const SORT_OPTION = 'SORT_OPTION';

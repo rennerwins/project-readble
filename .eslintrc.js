@@ -6,15 +6,15 @@ module.exports = {
     'no-unused-vars': [
       1,
       {
-        argsIgnorePattern: 'res|next|^err',
-      },
+        argsIgnorePattern: 'res|next|^err'
+      }
     ],
     'arrow-body-style': [2, 'as-needed'],
     'no-param-reassign': [
       2,
       {
-        props: false,
-      },
+        props: false
+      }
     ],
     'no-console': 0,
     import: 0,
@@ -32,27 +32,28 @@ module.exports = {
     'react/forbid-prop-types': 0,
     'react/no-unescaped-entities': 0,
     'no-undef': 0,
+    'react/prefer-stateless-function': 0,
     'react/jsx-filename-extension': [
       1,
       {
-        extensions: ['.js', '.jsx'],
-      },
+        extensions: ['.js', '.jsx']
+      }
     ],
     radix: 0,
     'no-shadow': [
       2,
       {
         hoist: 'all',
-        allow: ['resolve', 'reject', 'done', 'next', 'err', 'error'],
-      },
+        allow: ['resolve', 'reject', 'done', 'next', 'err', 'error']
+      }
     ],
     quotes: [
       2,
       'single',
       {
         avoidEscape: true,
-        allowTemplateLiterals: true,
-      },
-    ],
-  },
+        allowTemplateLiterals: true
+      }
+    ]
+  }
 };

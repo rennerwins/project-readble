@@ -1,25 +1,21 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as sortAction from '../actions/sort';
+import React, { Component } from 'react';
+
 import * as postAction from '../actions/post';
+import * as sortAction from '../actions/sort';
 import PostCard from '../components/post/PostCard';
 import SortList from '../components/sort/SortList';
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchAllPost();
-    this.props.sortByScore('high');
+    this.props.sortOption('high');
   }
 
   handleSortChange = e => {
     const { value } = e.target;
-    if (value === 'new' || value === 'old') {
-      this.props.sortByRecent(value);
-    }
 
-    if (value === 'high' || value === 'low') {
-      this.props.sortByScore(value);
-    }
+    this.props.sortOption(value);
   };
 
   render() {
@@ -52,11 +48,11 @@ const mapStateToProps = ({ category, post, sort }) => {
     post: Object.keys(post)
       .map(num => post[num])
       .filter(p => !p.deleted),
-    sort,
+    sort
   };
 };
 
 export default connect(mapStateToProps, {
   ...postAction,
-  ...sortAction,
+  ...sortAction
 })(App);
