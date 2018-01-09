@@ -7,12 +7,6 @@ export const getAllPost = posts => ({
   posts
 });
 
-export const getPostsFromCategory = (category, posts) => ({
-  type: actionTypes.GET_POSTS_FROM_CATEGORY,
-  category,
-  posts
-});
-
 export const getVotePost = (id, score) => ({
   type: actionTypes.GET_VOTE_POST,
   id,
@@ -39,7 +33,7 @@ export const fetchAllPost = () => (dispatch) => {
 
 export const fetchPostsFromCategory = category => (dispatch) => {
   api.getPostsFromCategory(category).then(({ data }) => {
-    dispatch(getPostsFromCategory(category, data));
+    dispatch(getAllPost(data));
   });
 };
 

@@ -5,9 +5,7 @@ import { sortList, reverseSortList } from '../utils/utility';
 const post = (state = {}, action) => {
   switch (action.type) {
     case actionTypes.GET_ALL_POST: {
-      const { posts } = action;
-      const post = reverseSortList(posts, 'voteScore');
-      // const post = _.reverse(_.sortBy(posts, 'voteScore'));
+      const post = reverseSortList(action.posts, 'voteScore');
       const mapPost = _.mapKeys(post, 'id');
       return {
         ...mapPost
@@ -17,15 +15,6 @@ const post = (state = {}, action) => {
     case actionTypes.GET_POST: {
       return {
         [action.post.id]: action.post
-      };
-    }
-
-    case actionTypes.GET_POSTS_FROM_CATEGORY: {
-      const { posts } = action;
-      const post = reverseSortList(posts, 'voteScore');
-      const mapPost = _.mapKeys(post, 'id');
-      return {
-        ...mapPost
       };
     }
 
@@ -40,19 +29,19 @@ const post = (state = {}, action) => {
     }
 
     case actionTypes.SORT_OPTION: {
-      let sortList;
+      let sort;
 
       if (action.sort === 'new') {
-        sortList = _.reverse(_.sortBy(state, 'timestamp'));
+        sort = reverseSortList(state, 'timestamp');
       } else if (action.sort === 'old') {
-        sortList = _.sortBy(state, 'timestamp');
+        sort = sortList(state, 'timestamp');
       } else if (action.sort === 'high') {
-        sortList = _.reverse(_.sortBy(state, 'voteScore'));
+        sort = reverseSortList(state, 'voteScore');
       } else if (action.sort === 'low') {
-        sortList = _.sortBy(state, 'voteScore');
+        sort = sortList(state, 'voteScore');
       }
 
-      return _.mapKeys(sortList, 'id');
+      return _.mapKeys(sort, 'id');
     }
 
     case actionTypes.DELETE_POST: {
