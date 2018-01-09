@@ -5,7 +5,7 @@ const SelectOption = ({
   label, value, change, disabled
 }) => (
   <div className="form-group">
-    <label>Example select</label>
+    <label>Category</label>
     <select className="form-control" value={value} onChange={change} disabled={disabled}>
       <option value="react">React</option>
       <option value="redux">Redux</option>
@@ -18,7 +18,7 @@ SelectOption.propTypes = {
   label: PropTypes.string.isRequired,
   change: PropTypes.func.isRequired,
   value: PropTypes.string,
-  disabled: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 
 export default SelectOption;
