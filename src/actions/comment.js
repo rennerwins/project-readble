@@ -1,23 +1,23 @@
 import api from '../api';
-import { GET_COMMENTS, GET_VOTE_COMMENT, EDIT_COMMENT } from './types';
+import * as actionTypes from './actionTypes';
 
 // action creators
 export const getComments = (id, comments) => ({
-  type: GET_COMMENTS,
+  type: actionTypes.GET_COMMENTS,
   id,
-  comments,
+  comments
 });
 
 export const getVoteComment = (id, score) => ({
-  type: GET_VOTE_COMMENT,
+  type: actionTypes.GET_VOTE_COMMENT,
   id,
-  score,
+  score
 });
 
 export const editComment = (id, editing) => ({
-  type: EDIT_COMMENT,
+  type: actionTypes.EDIT_COMMENT,
   id,
-  editing,
+  editing
 });
 
 // ajax

@@ -1,9 +1,9 @@
 import api from '../api';
-import { GET_ALL_CATEGORY } from './types';
+import * as actionTypes from './actionTypes';
 
 export const getAllCategory = categories => ({
-  type: GET_ALL_CATEGORY,
-  categories,
+  type: actionTypes.GET_ALL_CATEGORY,
+  categories
 });
 
 export const fetchCategory = () => (dispatch) => {

@@ -1,38 +1,32 @@
 import api from '../api';
-import {
-  GET_ALL_POST,
-  GET_POSTS_FROM_CATEGORY,
-  GET_VOTE_POST,
-  GET_POST,
-  DELETE_POST,
-} from './types';
+import * as actionTypes from './actionTypes';
 
 // action creators
 export const getAllPost = posts => ({
-  type: GET_ALL_POST,
-  posts,
+  type: actionTypes.GET_ALL_POST,
+  posts
 });
 
 export const getPostsFromCategory = (category, posts) => ({
-  type: GET_POSTS_FROM_CATEGORY,
+  type: actionTypes.GET_POSTS_FROM_CATEGORY,
   category,
-  posts,
+  posts
 });
 
 export const getVotePost = (id, score) => ({
-  type: GET_VOTE_POST,
+  type: actionTypes.GET_VOTE_POST,
   id,
-  score,
+  score
 });
 
 export const getPost = post => ({
-  type: GET_POST,
-  post,
+  type: actionTypes.GET_POST,
+  post
 });
 
 export const deletedPost = id => ({
-  type: DELETE_POST,
-  id,
+  type: actionTypes.DELETE_POST,
+  id
 });
 
 // ajax
