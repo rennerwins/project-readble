@@ -1,4 +1,4 @@
-import { CREATE_NEW_POST, CLEAR_NEW_POST } from '../actions/types';
+import * as actionTypes from '../actions/actionTypes';
 
 const initialCreateState = {
   id: '',
@@ -6,18 +6,18 @@ const initialCreateState = {
   title: '',
   body: '',
   author: '',
-  category: 'react',
+  category: 'react'
 };
 
 const create = (state = initialCreateState, action) => {
   switch (action.type) {
-    case CREATE_NEW_POST:
+    case actionTypes.CREATE_NEW_POST:
       return {
         ...state,
-        ...action.payload,
+        ...action.payload
       };
 
-    case CLEAR_NEW_POST:
+    case actionTypes.CLEAR_NEW_POST:
       return initialCreateState;
 
     default:

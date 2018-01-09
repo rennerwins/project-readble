@@ -1,4 +1,4 @@
-import { EDIT_COMMENT, CLEAR_NEW_POST, CREATE_NEW_COMMENT } from '../actions/types';
+import * as actionTypes from '../actions/actionTypes';
 
 const initialCreateCommentState = {
   id: '',
@@ -6,25 +6,25 @@ const initialCreateCommentState = {
   body: '',
   author: '',
   parentId: '',
-  editing: false,
+  editing: false
 };
 
 const createComment = (state = initialCreateCommentState, action) => {
   switch (action.type) {
-    case CREATE_NEW_COMMENT:
+    case actionTypes.CREATE_NEW_COMMENT:
       return {
         ...state,
-        ...action.payload,
+        ...action.payload
       };
 
-    case EDIT_COMMENT:
+    case actionTypes.EDIT_COMMENT:
       return {
         ...state,
         id: action.id,
-        editing: action.editing,
+        editing: action.editing
       };
 
-    case CLEAR_NEW_POST:
+    case actionTypes.CLEAR_NEW_POST:
       return initialCreateCommentState;
 
     default:

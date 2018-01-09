@@ -1,15 +1,16 @@
 import _ from 'lodash';
-import { GET_ALL_CATEGORY } from '../actions/types';
+import * as actionTypes from '../actions/actionTypes';
 
 const category = (state = {}, action) => {
   switch (action.type) {
-    case GET_ALL_CATEGORY:
+    case actionTypes.GET_ALL_CATEGORY:
       const { categories } = action;
       const category = _.mapKeys(categories, 'name');
       return {
         ...state,
-        ...category,
+        ...category
       };
+
     default:
       return state;
   }

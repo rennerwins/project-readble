@@ -1,11 +1,11 @@
-import { SORT_BY_RECENT, SORT_BY_SCORE } from '../actions/types';
+import * as actionTypes from '../actions/actionTypes';
 
 const sort = (state = 'high', action) => {
   switch (action.type) {
-    case SORT_BY_RECENT:
+    case actionTypes.SORT_BY_RECENT:
       return action.sort;
 
-    case SORT_BY_SCORE:
+    case actionTypes.SORT_BY_SCORE:
       return action.sort;
 
     default:
